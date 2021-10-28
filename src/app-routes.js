@@ -1,5 +1,5 @@
 import { withNavigationWatcher } from './contexts/navigation';
-import { HomePage, TasksPage, ProfilePage,BenhAnComponent } from 'pages/index';
+import { HomePage, TasksPage, ProfilePage,BenhAnComponent, XenghiemLabo } from 'pages/index';
 
 const routes = [
   {
@@ -69,12 +69,12 @@ const routes = [
   },
   {
     path: '/xetnghiem/:benhanId',
-    component: BenhAnComponent,
+    component: XenghiemLabo,
     name: 'xetnghiem',
     children: [
       {
         path: '/xetnghiem/:benhanId',
-        component: BenhAnComponent,
+        component: XenghiemLabo,
         name: 'xetnghiem',
         meta: {  icon: 'tab', text:'xetnghiem', path : '/xetnghiem/:benhanId'  }
       }

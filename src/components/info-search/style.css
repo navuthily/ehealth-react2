@@ -29,10 +29,14 @@
     padding-top: 10px !important;
 }
 .dx-texteditor-input{
-    border: 0.5px solid silver !important;
+  
 }
 
 .dx-texteditor.dx-editor-underlined .dx-placeholder::before, .dx-texteditor.dx-editor-underlined .dx-texteditor-input{
     /* padding:6px !important; */
     padding: 0px 0px 6px !important;
+}
+.dx-dropdowneditor-icon::before{
+    background-color: #8bc34a !important;
+    color: white;
 }

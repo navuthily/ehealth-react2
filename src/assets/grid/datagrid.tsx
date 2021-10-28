@@ -1,5 +1,5 @@
 import DataGrid, {
-    Column, Pager,
+    Column, FilterRow, Pager,
     Paging, Scrolling, Selection
 } from 'devextreme-react/data-grid';
 import 'devextreme/data/odata/store';
@@ -17,7 +17,7 @@ const priorities = [
 const DataGridCustom = (props: any) => {
     const stageCanvasRef: any = useRef();
     const propertyColumn = props.column;
-    const { propertyHeight, propertySelection, onCellDblClick, dataSource} = props;
+    const { propertyHeight, propertySelection, onCellDblClick, dataSource,filterRow } = props;
     return (
         <DataGrid
             className={'dx-card wide-card'}
@@ -25,7 +25,7 @@ const DataGridCustom = (props: any) => {
             showBorders={true}
             focusedRowEnabled={true}
             defaultFocusedRowIndex={0}
-            columnAutoWidth={false}
+            columnAutoWidth={true}
             height={propertyHeight || 100}
             width={"100%"}
             remoteOperations={true}
@@ -40,7 +40,8 @@ const DataGridCustom = (props: any) => {
                 selectAllMode={"always"}
                 showCheckBoxesMode={'onClick'}
             />}
-            {/* <FilterRow visible={true} /> */}
+
+            { filterRow &&  <FilterRow visible={true} />}
 
             {/* <Column dataField={'Task_Status'} caption={'Loại Khám'} width={100} /> */}
             {propertyColumn.map((index: any, key: any) => {

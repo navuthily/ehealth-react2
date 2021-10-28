@@ -1,5 +1,7 @@
 import ButtonCustom from 'assets/button/button';
+import DataGridCustom from 'assets/grid/datagrid';
 import PopupCustom from 'assets/popup/index';
+import { SelectBox } from 'devextreme-react';
 import { Button } from 'devextreme-react/button';
 import Form, { GroupItem, Item, SimpleItem } from 'devextreme-react/form';
 import 'devextreme-react/text-area';
@@ -64,6 +66,8 @@ export interface IObject {
     [key: string]: Object;
 }
 
+
+
 export const GridTop = () => {
     const location = useLocation();
     const dispatch = useDispatch();
@@ -104,7 +108,7 @@ export const GridTop = () => {
                 //validationGroup="customerData"
                 >
                     <GroupItem caption="">
-                        <div style={{ height: "120px", textAlign: "center" }}>
+                        <div style={{ border: "0.5px solid", boxShadow: "2px 2px #888888",height: "120px", textAlign: "center" }}>
                             <Form
                                 colCount={6}
                                 id="form"
@@ -115,10 +119,6 @@ export const GridTop = () => {
                                 showValidationSummary={true}
                             //validationGroup="customerData"
                             >
-                                <Button
-                                    type="success"
-                                    text="Done"
-                                />
                                 <SimpleItem dataField="Họ Tên" editorOptions={{ value: 'Tran Nhan Hieu' }} />
                                 <SimpleItem dataField="Giới Tính" editorOptions={{ value: 'Nam' }} />
                                 <SimpleItem dataField="Tuổi" editorOptions={{ value: '21' }} />
@@ -180,7 +180,7 @@ export const GridTop = () => {
                         </div>
                     </GroupItem>
                     <GroupItem caption="">
-                        <div style={{ height: "120px", textAlign: "center" }}>
+                        <div style={{ border: "0.5px solid", boxShadow: "2px 2px #888888",height: "120px", textAlign: "center" }}>
                             <Form
                                 colCount={3}
                                 id="form"
@@ -191,7 +191,7 @@ export const GridTop = () => {
                                 showValidationSummary={true}
                             //validationGroup="customerData"
                             >
-                                <Item dataField="Tiền Sử gia đình" editorType="dxTextArea" editorOptions={notesEditorOptions} icon="user" />
+                                <Item  dataField="Tiền Sử gia đình" editorType="dxTextArea" editorOptions={notesEditorOptions} icon="user" />
                                 <Item dataField="Tiền Sử bệnh nhân" editorType="dxTextArea" editorOptions={notesEditorOptions} />
                                 <Item dataField="Dị ứng" editorType="dxTextArea" editorOptions={notesEditorOptions} />
                             </Form>
@@ -204,23 +204,29 @@ export const GridTop = () => {
 }
 export const GridBody = () => {
     const [isChecked, setIsChecked] = useState(false);
+    const [isProperties, setIsProperties] = useState({});
     const handleOnDbClickCell = (item: any) => {
         console.log(item);
-        setIsChecked(!isChecked);
-        // const index: string = 'benhan_' + item?.key;
-        // const newObject: IObject = {};
-        // const newObjectRoute: IObject = {};
-        // newObjectRoute['meta'] = { icon: 'tab', text: 'BenhAn' + item?.key, path: '/benhan/' + item?.key };
-        // newObject[index] = item.values;
-        // dispatch(addParamsToState(newObject));
-        // dispatch(addMenuRouter([newObjectRoute]))
-        // history.push('/benhan/' + item?.key);
     }
     const handleButtonHoTroNM = (item: any) => {
-        console.log('1231');
-        // return  
+        setIsChecked(!isChecked);
+        setIsProperties({
+            title: 'Hỗ trợ ngôn ngữ', width: 400, height: 300, contentRender: () => <div className="dx-field">
+                <div className="dx-field-label">Hỗ trợ ngôn ngữ</div>
+                <div className="dx-field-value">
+                    <SelectBox
+                        //   items={this.simpleProducts}
+                        placeholder="Choose Product"
+                        showClearButton={true} />
+                </div>
+            </div>
+        });
     }
-    
+    const handleButtonTimKiem = (item: any) => {
+        setIsChecked(!isChecked);
+        setIsProperties({ title: '', width: 1000, height: 500, contentRender: () => <DataGridCustom column={[{ caption: 'Tên thuốc' }, { caption: 'Ngày kê đơn' }, { caption: 'Số lượng kê' }, { caption: 'Số lượng lấy' }, { caption: 'Đơn vị' }, { caption: 'Đường dùng' }, { caption: 'Cách dùng' }, { caption: 'Bác sĩ' }]} propertyHeight={350} filterRow={true} dataSource={dataSource} /> });
+    }
+
 
     return (
         <>
@@ -232,10 +238,10 @@ export const GridBody = () => {
                 readOnly={false}
                 showColonAfterLabel={true}
                 showValidationSummary={true}
-            //validationGroup="customerData"
+                //validationGroup="customerData"
             >
                 <GroupItem >
-                    <div style={{ height: "70px", textAlign: "center" }}>
+                    <div style={{ border: "0.5px solid", boxShadow: "2px 2px #888888",height: "70px", textAlign: "center" }}>
                         <Form
                             colCount={5}
                             id="form"
@@ -295,8 +301,8 @@ export const GridBody = () => {
                     </div>
                 </GroupItem>
                 <GroupItem>
-                
-                    <div style={{ height: "70px", textAlign: "center" }}>
+
+                    <div style={{ border: "0.5px solid", boxShadow: "2px 2px #888888",height: "70px", textAlign: "center" }}>
                         <Form
                             colCount={1}
                             id="form"
@@ -407,7 +413,7 @@ export const GridBody = () => {
             >
 
                 <GroupItem >
-                    <div style={{ border: "1px solid green", height: "350px", textAlign: "center" }}>
+                    <div style={{ border: "0.5px solid", boxShadow: "2px 2px #888888", height: "350px", textAlign: "center" }}>
                         <Form
                             colCount={2}
                             id="form"
@@ -425,8 +431,8 @@ export const GridBody = () => {
                                         &nbsp;
                                         <Button
                                             text="Hỗ trợ NN:"
-                                        // width={"auto"}
-                                         onClick={handleButtonHoTroNM}
+                                            // width={"auto"}
+                                            onClick={handleButtonHoTroNM}
                                         />
                                         <Button
                                             text="Toa Phụ"
@@ -435,12 +441,12 @@ export const GridBody = () => {
                                         />
                                         <Button
                                             text="Tìm Kiếm"
-                                        // width={"auto"}
-                                        // onClick={this.doneClick} 
+                                            // width={"auto"}
+                                            onClick={handleButtonTimKiem}
                                         />
                                     </div>
                                 </div>
-                                <DataGrid column={[{ caption: 'Loại khám', width: 100 }, { caption: 'Bác sỹ', width: 100 }, { caption: 'Giờ', width: 100 }, { caption: 'Ngày', width: 100 }, { caption: 'Hiệu thuốc', width: 100 }]} propertyHeight={250} onCellDblClick={handleOnDbClickCell} dataSource={dataSource} />
+                                <DataGrid column={[{ caption: 'Loại khám' }, { caption: 'Bác sỹ' }, { caption: 'Giờ' }, { caption: 'Ngày' }, { caption: 'Hiệu thuốc' }]} propertyHeight={250} onCellDblClick={handleOnDbClickCell} dataSource={dataSource} />
                             </GroupItem>
                             <GroupItem caption="">
                                 <Form
@@ -454,13 +460,13 @@ export const GridBody = () => {
                                 //validationGroup="customerData"
                                 >
                                     <GroupItem caption="">
-                                        <DataGrid column={[{ caption: 'Diễn biến bệnh', width: 100 }]} onCellDblClick={handleOnDbClickCell} dataSource={dataSource} />
+                                        <DataGrid column={[{ caption: 'Diễn biến bệnh' }]} onCellDblClick={handleOnDbClickCell} dataSource={dataSource} />
                                     </GroupItem>
                                     <GroupItem caption="">
-                                        <DataGrid column={[{ caption: 'Chẩn Đoán', width: 200 }, { caption: '', width: 100 }]} onCellDblClick={handleOnDbClickCell} dataSource={dataSource} />
+                                        <DataGrid column={[{ caption: 'Chẩn Đoán', width: 200 }, { caption: '' }]} onCellDblClick={handleOnDbClickCell} dataSource={dataSource} />
                                     </GroupItem>
                                     <GroupItem caption="">
-                                        <DataGrid column={[{ caption: 'Mã', width: 100 }, { caption: 'ICD10', width: 100 }]} onCellDblClick={handleOnDbClickCell} dataSource={dataSource} />
+                                        <DataGrid column={[{ caption: 'Mã' }, { caption: 'ICD10' }]} onCellDblClick={handleOnDbClickCell} dataSource={dataSource} />
                                     </GroupItem>
 
                                 </Form>
@@ -469,7 +475,7 @@ export const GridBody = () => {
                     </div>
                 </GroupItem>
                 <GroupItem>
-                    <div style={{ border: "1px solid green", height: "350px", textAlign: "center" }}>
+                    <div style={{ border: "0.5px solid", boxShadow: "2px 2px #888888", height: "350px", textAlign: "center" }}>
                         <Form
                             colCount={1}
                             id="form"
@@ -482,7 +488,7 @@ export const GridBody = () => {
                         //validationGroup="customerData"
                         >
                             <GroupItem caption="">
-                                <DataGrid column={[{ caption: 'Tên thuốc', width: 100 }, { caption: 'Giá bán', width: 100 }, { caption: 'Đ.Dùng', width: 100 }, { caption: 'SL', width: 100 }, { caption: 'tổng', width: 100 }, { caption: 'C.dùng', width: 100 }, { caption: 'T.hiện', width: 100 }, { caption: 'Cách dùng chi tiết', width: 100 }]} propertySelection={true} propertyHeight={200} onCellDblClick={handleOnDbClickCell} dataSource={isChecked && dataSource} />
+                                <DataGrid column={[{ caption: 'Tên thuốc' }, { caption: 'Giá bán' }, { caption: 'Đ.Dùng' }, { caption: 'SL' }, { caption: 'tổng' }, { caption: 'C.dùng' }, { caption: 'T.hiện' }, { caption: 'Cách dùng chi tiết' }]} propertySelection={true} propertyHeight={200} onCellDblClick={handleOnDbClickCell} dataSource={isChecked && dataSource} />
                                 <Form
                                     colCount={5}
                                     id="form"
@@ -555,11 +561,25 @@ export const GridBody = () => {
                     </div>
                 </GroupItem>
             </Form>
-            <PopupCustom popupVisible={isChecked} onChangeVisible={()=>setIsChecked(!isChecked)} />
+            <PopupCustom
+                visible={isChecked}
+                dragEnabled={false}
+                closeOnOutsideClick={false}
+                showCloseButton={true}
+                showTitle={true}
+                container=".dx-viewport"
+                // title="Dialog"
+                // width={600}
+                // height={400}
+                onVisibleChange={() => setIsChecked(!isChecked)}
+                {...isProperties}
+            />
         </>
-        
+
     )
 }
+
+
 
 const BenhAnComponent = () => {
     return (
@@ -569,7 +589,6 @@ const BenhAnComponent = () => {
                 <GridBody />
             </React.Fragment>
         </KeepAlive>
-
     )
 }
 

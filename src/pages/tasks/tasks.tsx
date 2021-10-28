@@ -73,7 +73,7 @@ export default function Task() {
             />
           </div>
         </div>
-          <DataGrid column={[{ caption: 'Mã BN', width: 100 }, { caption: 'Họ lót', width: 200 }, { caption: 'Tên', width: 100 }, { caption: 'Ngày sinh', width: 200 }, { caption: 'Năm sinh', width: 100 }, { caption: 'Giới tính', width: 100 }, { caption: 'Điện thoại 1', width: 100 }, { caption: 'Điện thoại 2', width: 100 }, { caption: 'Địa chỉ', width: 200 }, { caption: 'Người liên hệ', width: 150 }, { caption: 'Quan hệ với BN', width: 100 }, { caption: 'ĐT người LH', width: 100 }, { caption: 'DT người LH', width: 100 }, { caption: 'Ghi chú', width: 100 }, { caption: 'Sổ BHYT', width: 100 }]} propertyHeight={"400"} onCellDblClick={handleOnDbClickCell} dataSource={dataSource}  />
+          <DataGrid column={[{ caption: 'Mã BN', width: 100 }, { caption: 'Họ lót'}, { caption: 'Tên'}, { caption: 'Ngày sinh', width: 200 }, { caption: 'Năm sinh', width: 100 }, { caption: 'Giới tính', width: 100 }, { caption: 'Điện thoại 1', width: 100 }, { caption: 'Điện thoại 2', width: 100 }, { caption: 'Địa chỉ', width: 200 }, { caption: 'Người liên hệ', width: 150 }, { caption: 'Quan hệ với BN', width: 100 }, { caption: 'ĐT người LH', width: 100 }, { caption: 'DT người LH', width: 100 }, { caption: 'Ghi chú', width: 100 }, { caption: 'Sổ BHYT', width: 100 }]} propertyHeight={"400"} onCellDblClick={handleOnDbClickCell} dataSource={dataSource}  />
       </React.Fragment>
     </KeepAlive>
   )
