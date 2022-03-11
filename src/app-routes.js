@@ -1,5 +1,5 @@
 import { withNavigationWatcher } from './contexts/navigation';
-import { HomePage, TasksPage, ProfilePage,BenhAnComponent, XenghiemLabo } from 'pages/index';
+import { HomePage, TasksPage, ProfilePage,BenhAnComponent, XenghiemLabo, NewStaffPage } from 'pages/index';
 
 const routes = [
   {
@@ -25,6 +25,19 @@ const routes = [
         component: ProfilePage,
         name: 'Profile',
         meta: { title: 'profile', icon: 'tab' }
+      }
+    ]
+  },
+  {
+    path: '/new-staff',
+    component: NewStaffPage,
+    name: 'New Staff',
+    children: [
+      {
+        path: '/new-staff',
+        component: NewStaffPage,
+        name: 'New Staff',
+        meta: { title: 'new-staff', icon: 'tab' }
       }
     ]
   },

@@ -35,6 +35,16 @@ export const navigation = [
             meta: { text: 'Tasks', icon: 'folder', path: '/tasks' }
           }
         ]
+      },
+      {
+        text: 'New staff',
+        path: '/new-staff',
+        children: [
+          {
+            // component: TasksPage,
+            meta: { text: ' New Staff', icon: 'folder', path: '/new-staff' }
+          }
+        ]
       }
     ]
   }
