@@ -11,7 +11,13 @@ import './themes/generated/theme.additional.css';
 import './themes/generated/theme.base.css';
 import UnauthenticatedContent from './UnauthenticatedContent';
 import { useScreenSizeClass } from './utils/media-query';
+
+import viMessages from "devextreme/localization/messages/vi.json";
+
+import { locale, loadMessages, formatMessage } from "devextreme/localization";
 function App() {
+  locale("vi");
+loadMessages(viMessages);
   const { user, loading } = useAuth();
 
   if (loading) {
