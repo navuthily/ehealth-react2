@@ -17,7 +17,7 @@ import viMessages from "devextreme/localization/messages/vi.json";
 import { locale, loadMessages, formatMessage } from "devextreme/localization";
 function App() {
   locale("vi");
-loadMessages(viMessages);
+  loadMessages(viMessages);
   const { user, loading } = useAuth();
 
   if (loading) {

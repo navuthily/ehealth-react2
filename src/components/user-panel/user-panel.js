@@ -8,7 +8,7 @@ import './user-panel.scss';
 export default function UserPanel({ menuMode }) {
   const { user, signOut } = useAuth();
   const history = useHistory();
-
+  console.log(user);
   function navigateToProfile() {
     history.push("/profile");
   }
@@ -36,7 +36,7 @@ export default function UserPanel({ menuMode }) {
             }}
             className={'user-image'} />
         </div>
-        <div className={'user-name'}>{user.email}</div>
+        <div className={'user-name'}>{user.holotNhanVien} {user.tennhanvien}</div>
       </div>
 
       {menuMode === 'context' && (

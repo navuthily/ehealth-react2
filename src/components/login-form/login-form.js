@@ -15,6 +15,9 @@ import { useAuth } from '../../contexts/auth';
 import './login-form.scss';
 
 export default function LoginForm() {
+
+
+
   const history = useHistory();
   const { signIn } = useAuth();
   const [loading, setLoading] = useState(false);
@@ -22,30 +25,27 @@ export default function LoginForm() {
 
   const onSubmit = useCallback(async (e) => {
     e.preventDefault();
-    const { email, password } = formData.current;
-    setLoading(true);
+    const { userName, password } = formData.current;
 
-    const result = await signIn(email, password);
+    const result = await signIn(userName, password);
     if (!result.isOk) {
       setLoading(false);
       notify(result.message, 'error', 2000);
     }
   }, [signIn]);
 
-  const onCreateAccountClick = useCallback(() => {
-    history.push('/create-account');
-  }, [history]);
+
 
   return (
     <form className={'login-form'} onSubmit={onSubmit}>
       <Form formData={formData.current} disabled={loading}>
         <Item
-          dataField={'email'}
+          dataField={'userName'}
           editorType={'dxTextBox'}
           editorOptions={emailEditorOptions}
         >
           <RequiredRule message="Email is required" />
-          <EmailRule message="Email is invalid" />
+          {/* <EmailRule message="Email is invalid" /> */}
           <Label visible={false} />
         </Item>
         <Item
@@ -56,13 +56,13 @@ export default function LoginForm() {
           <RequiredRule message="Password is required" />
           <Label visible={false} />
         </Item>
-        <Item
+        {/* <Item
           dataField={'rememberMe'}
           editorType={'dxCheckBox'}
           editorOptions={rememberMeEditorOptions}
         >
           <Label visible={false} />
-        </Item>
+        </Item> */}
         <ButtonItem>
           <ButtonOptions
             width={'100%'}
@@ -73,28 +73,28 @@ export default function LoginForm() {
               {
                 loading
                   ? <LoadIndicator width={'24px'} height={'24px'} visible={true} />
-                  : 'Sign In'
+                  : 'Đăng nhập'
               }
             </span>
           </ButtonOptions>
         </ButtonItem>
-        <Item>
+        {/* <Item>
           <div className={'link'}>
             <Link to={'/reset-password'}>Forgot password?</Link>
           </div>
-        </Item>
-        <ButtonItem>
+        </Item> */}
+        {/* <ButtonItem>
           <ButtonOptions
             text={'Create an account'}
             width={'100%'}
             onClick={onCreateAccountClick}
           />
-        </ButtonItem>
+        </ButtonItem> */}
       </Form>
     </form>
   );
 }
 
-const emailEditorOptions = { stylingMode: 'filled', placeholder: 'Email', mode: 'email' };
-const passwordEditorOptions = { stylingMode: 'filled', placeholder: 'Password', mode: 'password' };
-const rememberMeEditorOptions = { text: 'Remember me', elementAttr: { class: 'form-text' } };
+const emailEditorOptions = { stylingMode: 'filled', placeholder: 'Tên đăng nhập', mode: 'username' };
+const passwordEditorOptions = { stylingMode: 'filled', placeholder: 'Mật khẩu', mode: 'password' };
+// const rememberMeEditorOptions = { text: 'Remember me', elementAttr: { class: 'form-text' } };
