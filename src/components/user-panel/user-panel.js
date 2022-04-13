@@ -8,7 +8,7 @@ import './user-panel.scss';
 export default function UserPanel({ menuMode }) {
   const { user, signOut } = useAuth();
   const history = useHistory();
-  console.log(user);
+
   function navigateToProfile() {
     history.push("/profile");
   }

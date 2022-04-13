@@ -16,7 +16,7 @@ export async function signIn(userName, password) {
     if(dataUser.user){
       return {
         isOk: true,
-        data: dataUser.user
+        data: dataUser
       };      
     }else{
       return {
@@ -86,7 +86,7 @@ export async function changePassword(email, recoveryCode) {
   catch {
     return {
       isOk: false,
-      message: "Tên đăng nhập hoặc mật khẩu không chính xác!"
+      message: "Fail"
     }
   }
 }
@@ -103,7 +103,7 @@ export async function resetPassword(email) {
   catch {
     return {
       isOk: false,
-      message: "Tên đăng nhập hoặc mật khẩu không chính xác!"
+      message: "Fail"
     };
   }
 }

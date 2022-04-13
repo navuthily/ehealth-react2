@@ -45,6 +45,16 @@ export const navigation = [
             meta: { text: ' New Staff', icon: 'folder', path: '/new-staff' }
           }
         ]
+      },
+      {
+        text: 'Đặt lịch hẹn',
+        path: '/datlichhen',
+        children: [
+          {
+            // component: TasksPage,
+            meta: { text: 'Đặt lịch hẹn', icon: 'folder', path: '/datlichhen' }
+          }
+        ]
       }
     ]
   }

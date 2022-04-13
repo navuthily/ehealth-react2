@@ -8,10 +8,13 @@ export default async function api(
   method: string,
   token?: string | null,
 ) {
-  
 
+  
   if (!token) {
-    // token = await AsyncStorage.getItem('token')
+    token = await sessionStorage.getItem("token")
+
+    
+
     
   }
   let options: {}
@@ -39,11 +42,12 @@ export default async function api(
       ...(params && { body: JSON.stringify(params) }),
       data: params,
     }
+    
+    
   }
 
-  // console.log("=============",options);
 
-  // console.log(new Date());
+
   // axios({
   //   method: 'post',
   //   url: 'http://api-patient.familyhospital.vn/api/auth/login',
