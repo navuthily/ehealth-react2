@@ -1,4 +1,4 @@
-import { useThoigianlichkhamngay } from "contexts/thoigianlichkhamngay";
+import { useThoigianlichkhamngay } from "contexts/thoigianlichkhamngay.context";
 import ThoiGianLichHenGio from "./thoigianlichhenkhamgio";
 
 export default function ThoigianlichhenkhamgioHOC() {

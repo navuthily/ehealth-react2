@@ -1,28 +1,23 @@
 import { getModule } from 'api';
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react';
+import dayjs from 'dayjs'
 
-
-const INIT = {
-}
-const reducer = (state = INIT, action) => {
-  switch (action.type) {
-    case "add":
-  
-      return {
-        ...state, ...action.payload
-      }
-
-    default:
-      return 1
-  }
-}
 
 
 
 function ThoigianlichkhamngayProvider(props) {
   const [id, setId] = useState(null)
+  const [moduleId, setModuleId] = useState(null)
   const [module, setModule] = useState()
-  const [state, dispatch] = useReducer(reducer, INIT)
+  const [searchDate, setSearchDate] = useState({
+    startDate: dayjs().startOf('year'),
+    endDate: dayjs().endOf('year')
+  })
+
+  const [selectedRowIndex, setSelectedRowIndex] = useState(-1)
+
+
+
 
   useEffect(() => {
     const getData = async() => {
@@ -50,7 +45,7 @@ function ThoigianlichkhamngayProvider(props) {
 
   return (
     
-    <ThoigianlichkhamngayContext.Provider value={{ id, setIdLichkhamngay, module, dispatch, state }} {...props} />
+    <ThoigianlichkhamngayContext.Provider value={{ id, setIdLichkhamngay, module, searchDate, selectedRowIndex, setSelectedRowIndex, moduleId, setModuleId }} {...props} />
   );
 }
 

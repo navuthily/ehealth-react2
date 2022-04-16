@@ -1,7 +1,9 @@
 import { CRUDThoigianlichhenkhamngay } from 'api';
-import { Column, DataGrid, Editing, FilterRow, Form, HeaderFilter, Lookup, Popup, Scrolling } from 'devextreme-react/data-grid';
+import { Button, SpeedDialAction,  } from 'devextreme-react';
+import { Column, ColumnFixing, DataGrid, Editing, FilterRow, Form, HeaderFilter, Lookup, Popup, Scrolling,Toolbar ,Item as ItemToolbar } from 'devextreme-react/data-grid';
 import { Item } from 'devextreme-react/form';
 import { CompareRule, RequiredRule } from 'devextreme-react/validator';
+import config from 'devextreme/core/config';
 import CustomStore from 'devextreme/data/custom_store';
 import React, { useRef, useState } from 'react';
 
@@ -12,10 +14,9 @@ import React, { useRef, useState } from 'react';
 const formatSearchDate = {   useMaskBehavior: "true" }
 
 
-const Thoigianlichhenkhamngay = React.memo(({ setId, module, dispatch }) =>  {
-  const [focusedRowKey, setFocusedRowKey] = useState()
-  
+const Thoigianlichhenkhamngay = React.memo(({ setId, module }) =>  {
 
+  console.log("mmmmmmmmmmmmmmmmmmmmmm");
   const dataGrid = useRef()
 
   const [ordersData, setOrdersData] = useState(new CustomStore({
@@ -68,9 +69,10 @@ const Thoigianlichhenkhamngay = React.memo(({ setId, module, dispatch }) =>  {
   }
 
   const onFocusedRowChanged = (e) => {
+
+    // setSelectedRowIndex(e.rowIndex)
     if(e && e.row && e.row.key){
       setId(e.row.key)
-      setFocusedRowKey(e.component.option('focusedRowKey'))
     } 
     
 
@@ -80,6 +82,7 @@ const Thoigianlichhenkhamngay = React.memo(({ setId, module, dispatch }) =>  {
   
   const comparisonTarget = (value) => {
       let gridInstant = dataGrid.current.instance;
+      console.log(gridInstant);
       let editRowkey = gridInstant.option('editing.editRowKey')
       let index = gridInstant.getRowIndexByKey(editRowkey)
       let data = gridInstant.cellValue(index, value)
@@ -88,10 +91,18 @@ const Thoigianlichhenkhamngay = React.memo(({ setId, module, dispatch }) =>  {
   
   }
 
+  // const editRow = () => {
+  //   console.log(selectedRowIndex);
+  //   dataGrid.current.instance.editRow(selectedRowIndex)
+  //   dataGrid.current.instance.deselectAll()
+  // }
+
+
 
   return (
     <DataGrid
       id="gridContainer"
+      dateSerializationFormat={"yyyy-MM-ddTHH:mm:ss"}
 
       showBorders={true}
       allowColumnReordering={true}
@@ -101,46 +112,45 @@ const Thoigianlichhenkhamngay = React.memo(({ setId, module, dispatch }) =>  {
 
 
       focusedRowEnabled={true}
-      focusedRowKey={1}
+      // focusedRowKey={1}
       onFocusedRowChanging={onFocusedRowChanging}
       onFocusedRowChanged={onFocusedRowChanged}
   
-      height="80vh"
+      height="70vh"
 
+      allowColumnResizing={true}
+      // columnAutoWidth={true}
       ref={dataGrid}
     >
 
     <Scrolling mode="virtual" useNative={true}/>
     <FilterRow visible={true}/>
+    <ColumnFixing enabled={true} />
     <HeaderFilter visible={true}/>
     <Editing
       mode="popup"
       allowAdding={true}
       allowDeleting={true}
       allowUpdating={true}
-    
     >
       <Popup  width={600} height={400} />
       <Form>
         <Item itemType="group" colCount={1} colSpan={2} >
-          <Item dataField="start_date" dataType="date"/>
-          <Item dataField="end_date" dataType="date"/>
-          <Item dataField="module_id"/>          
+          <Item dataField="start_date" dataType="date" />
+          <Item dataField="end_date" dataType="date"  />
+          <Item dataField="module_id"/>        
         </Item>
       </Form>
     </Editing>
 
-    {/* <Column
-      dataField="id"
-      caption="ID"
-      dataType="string"
-      alignment="right"
-      gnment="right"
-      allowFiltering={false}
+         
 
     
-    /> */}
-
+  
+    <Column dataField="module_id" caption="ModuleName" fixed={true} width={150}>
+          <Lookup dataSource={module} valueExpr="id" displayExpr="moduleName"/>
+          <RequiredRule/>
+    </Column>
     <Column
       dataField="start_date"
       caption="Ngày bắt đầu"
@@ -148,6 +158,8 @@ const Thoigianlichhenkhamngay = React.memo(({ setId, module, dispatch }) =>  {
       alignment="right"
       gnment="right"
       editorOptions={formatSearchDate}
+      fixed={true}
+      width={100}
     >
       <RequiredRule/>
       <CompareRule   comparisonTarget={()=>{return comparisonTarget("end_date")}} comparisonType={"<"}  message={"Ngày bắt đầu không được lớn hơn ngày kết thúc!"}/>
@@ -156,23 +168,30 @@ const Thoigianlichhenkhamngay = React.memo(({ setId, module, dispatch }) =>  {
 
 
     
-    <Column dataField="end_date" caption="Ngày kết thúc" dataType="date" alignment="right" gnment="right"  editorOptions={formatSearchDate}>
+    <Column      width={100} fixed={true} dataField="end_date" caption="Ngày kết thúc" dataType="date" alignment="right" gnment="right"  editorOptions={formatSearchDate}>
     <RequiredRule/>
     </Column>
 
-    <Column dataField="module_id" caption="ModuleName">
-          <Lookup dataSource={module} valueExpr="id" displayExpr="moduleName"/>
-          <RequiredRule/>
-    </Column>           
-    
+    <Column width={100} dataField="userCreatedBy.nickname" caption="Người tạo" dataType="string" alignment="right" gnment="right"/>
+    <Column width={100} dataField="userUpdatedBy.nickname" caption="Người sửa" dataType="string" alignment="right" gnment="right" />
+    <Column width={100} dataField="createdAt" caption="Ngày tạo" dataType="date" alignment="right" gnment="right" />
+    <Column width={100} dataField="updatedAt" caption="Ngày sửa" dataType="date" alignment="right" gnment="right" />
+
   
     
 
-
-
+{/*  
+    <Toolbar  >
+        <ItemToolbar location={"before"}>
+          <Button icon="edit" type="danger"  onClick={editRow}/>
+        </ItemToolbar>
+    </Toolbar>  */}
 
 
   </DataGrid>
+
+
+    // <SpeedDialAction></SpeedDialAction>
   )
 })
 

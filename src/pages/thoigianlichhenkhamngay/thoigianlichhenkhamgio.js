@@ -1,13 +1,14 @@
 // import {  } from 'devextreme-react';
 import { CRUDThoigianlichhenkhamgio } from 'api';
-import { Column, DataGrid, Editing, FilterRow, Form, Paging,DateBox ,CheckBox, Format} from 'devextreme-react/data-grid';
+import { Column, CompareRule, DataGrid, Editing, FilterRow, Form, Popup, RequiredRule } from 'devextreme-react/data-grid';
 import { Item } from 'devextreme-react/form';
 import CustomStore from 'devextreme/data/custom_store';
+import { formatMessage } from 'devextreme/localization';
 import React, { useRef } from 'react';
 import 'whatwg-fetch';
 
 
-const format = { type: "time", displayFormat: "HH:mm",  useMaskBehavior: "true" }
+const format = { type: "time", displayFormat: "HH:mm",  useMaskBehavior: "true", showClearButton: "true" }
 const ThoiGianLichHenGio = React.memo(({ id }) => {
 
   const dataGrid = useRef()
@@ -48,7 +49,15 @@ const ThoiGianLichHenGio = React.memo(({ id }) => {
   }
 
 
+  const comparisonTarget = (value) => {
+      let gridInstant = dataGrid.current.instance;
+      let editRowkey = gridInstant.option('editing.editRowKey')
+      let index = gridInstant.getRowIndexByKey(editRowkey)
+      let data = gridInstant.cellValue(index, value)
+      // console.log(data);
+      return data
 
+  }
 
 
   return (
@@ -64,30 +73,32 @@ const ThoiGianLichHenGio = React.memo(({ id }) => {
             rowAlternationEnabled={true}
             dataSource={ordersData}
             repaintChangesOnly={true}
+            height="80vh"
             ref={dataGrid}
       
 
    
           >
-         
-              <Editing
-                mode="popup"
-                allowAdding={true}
-                allowDeleting={true}
-                allowUpdating={true}
-              >
-                <Form>
+             
+          <Editing
+            mode="popup"
+            allowAdding={true}
+            allowDeleting={true}
+            allowUpdating={true}
+          >
+              <Popup  width={600} height={400} />
+              <Form>
+              <Item itemType="group" colCount={1} colSpan={2} >
                   <Item dataField="start_time"/>
                   <Item dataField="end_time" />
-                  
+              </Item>
 
-                </Form>
-              </Editing>            
-              
-            
+                
 
+              </Form>
+          </Editing>            
 
-            <Column
+          <Column
               dataField="start_time"
               caption="Thời gian bắt đầu"
               dataType="datetime"
@@ -95,21 +106,24 @@ const ThoiGianLichHenGio = React.memo(({ id }) => {
               gnment="right"
               editorOptions={format}
               format={"shortTime"}
-            />
+              
+            >
+              <RequiredRule/>
+              <CompareRule   comparisonTarget={()=>{return comparisonTarget("end_time")}} comparisonType={"<"}  message={"Ngày bắt đầu không được lớn hơn ngày kết thúc!"}/>
+
+          </Column >
+
+
             
-            <Column dataField="end_time" caption="Thời gian kết thúc" dataType="datetime" alignment="right" gnment="right" editorOptions={format} format={"shortTime"}/>
-         
-                  
-             
-            <Column/>
+            <Column dataField="end_time" caption="Thời gian kết thúc" dataType="datetime" alignment="right" gnment="right" editorOptions={format} format={"shortTime"}>
+                <RequiredRule/>
+            </Column >
      
+            <Column dataField="userCreatedBy.nickname" caption="Người tạo" dataType="string" alignment="right" gnment="right"/>
+            <Column dataField="userUpdatedBy.nickname" caption="Người sửa" dataType="string" alignment="right" gnment="right" />
+            <Column dataField="createdAt" caption="Ngày tạo" dataType="date" alignment="right" gnment="right" />
+            <Column dataField="updatedAt" caption="Ngày sửa" dataType="date" alignment="right" gnment="right" />
 
-
-
-            <Paging
-              enabled="true"
-              defaultPageSize="15"
-            />
             <FilterRow visible={true} />
           </DataGrid>
         </React.Fragment>       

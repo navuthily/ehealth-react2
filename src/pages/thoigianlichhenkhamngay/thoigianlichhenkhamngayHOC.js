@@ -1,8 +1,8 @@
-import { useThoigianlichkhamngay } from 'contexts/thoigianlichkhamngay';
+import { useThoigianlichkhamngay } from 'contexts/thoigianlichkhamngay.context';
 import Thoigianlichhenkhamngay from './thoigianlichhenkhamngay';
 
 export default function ThoigianlichhenkhamngayHOC() {
-  const { setIdLichkhamngay, module, dispatch, state } = useThoigianlichkhamngay();
+  const { setIdLichkhamngay, setModuleId, module,  } = useThoigianlichkhamngay();
 
   return (
     <>
@@ -10,8 +10,8 @@ export default function ThoigianlichhenkhamngayHOC() {
         <Thoigianlichhenkhamngay 
           setId={setIdLichkhamngay}
           module={module}
-          dispatch={dispatch}
-          state={state}
+          setModuleId={setModuleId}
+
         
         />
       }    
