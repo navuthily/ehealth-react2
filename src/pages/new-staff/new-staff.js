@@ -51,25 +51,25 @@ const store = new CustomStore({
 });
 const notesEditorOptions = { height: 100 };
 function NewStaff() {
-const [autoExpandAll,setautoExpandAll]= useState(true);
-const [focusedRowKey,setFocusRowKey]= useState(1);
-const [focusedRowIndex,setFocusRowIndex]= useState(1);
-const [autoNavigateToFocusedRow,setautoNavigateToFocusedRow]= useState(true);
+  const [autoExpandAll,setautoExpandAll]= useState(true);
+  const [focusedRowKey,setFocusRowKey]= useState(1);
+  const [focusedRowIndex,setFocusRowIndex]= useState(1);
+  const [autoNavigateToFocusedRow,setautoNavigateToFocusedRow]= useState(true);
 
 
-const onFocusedRowChanged= (e) => {
-  setFocusRowIndex(e.component.option('focusedRowIndex'))
-  setFocusRowKey(e.component.option('focusedRowKey'))
+  const onFocusedRowChanged= (e) => {
+    setFocusRowIndex(e.component.option('focusedRowIndex'))
+    setFocusRowKey(e.component.option('focusedRowKey'))
 
-}
+  }
 
-const dataGrid = useRef(null);
-const collapseAllGroups = () => {
-    dataGrid.current.instance.collapseAll();
-};
-const expandAllGroups = () => {
-    dataGrid.current.instance.expandAll();
-};
+  const dataGrid = useRef(null);
+  const collapseAllGroups = () => {
+      dataGrid.current.instance.collapseAll();
+  };
+  const expandAllGroups = () => {
+      dataGrid.current.instance.expandAll();
+  };
   return (
   <div>  
     <button onClick={expandAllGroups}>Mở</button>
@@ -88,33 +88,33 @@ const expandAllGroups = () => {
     onFocusedRowChanged={onFocusedRowChanged} 
     keyExpr='id'    ref={dataGrid}
     >
-              <Editing
-            mode="popup"
-            allowUpdating={true}
-            allowAdding={true}
-            allowDeleting={true}>
-            <Popup title="Employee Info" showTitle={true} width={700} height={525} />
-            <Form>
-              <Item itemType="group" colCount={2} colSpan={2}>
-                <Item dataField="FirstName" />
-                <Item dataField="LastName" />
-                <Item dataField="Prefix" />
-                <Item dataField="BirthDate" />
-                <Item dataField="Position" />
-                <Item dataField="HireDate" />
-                <Item
-                  dataField="Notes"
-                  editorType="dxTextArea"
-                  colSpan={2}
-                  editorOptions={notesEditorOptions} />
-              </Item>
+    <Editing
+          mode="popup"
+          allowUpdating={true}
+          allowAdding={true}
+          allowDeleting={true}>
+          <Popup title="Employee Info" showTitle={true} width={700} height={525} />
+          <Form>
+            <Item itemType="group" colCount={2} colSpan={2}>
+              <Item dataField="FirstName" />
+              <Item dataField="LastName" />
+              <Item dataField="Prefix" />
+              <Item dataField="BirthDate" />
+              <Item dataField="Position" />
+              <Item dataField="HireDate" />
+              <Item
+                dataField="Notes"
+                editorType="dxTextArea"
+                colSpan={2}
+                editorOptions={notesEditorOptions} />
+            </Item>
 
-              <Item itemType="group" caption="Home Address" colCount={2} colSpan={2}>
-                <Item dataField="StateID" />
-                <Item dataField="Address" />
-              </Item>
-            </Form>
-          </Editing>
+            <Item itemType="group" caption="Home Address" colCount={2} colSpan={2}>
+              <Item dataField="StateID" />
+              <Item dataField="Address" />
+            </Item>
+          </Form>
+    </Editing>
     <Column dataField="holotNhanVien"  dataType="string"  caption="Họ lót" />
     <Column dataField="tennhanvien" dataType="string"  caption="Tên nhân viên" />
     <Column dataField="nickname" dataType="string"  caption="Nick Name"/>

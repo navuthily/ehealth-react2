@@ -12,6 +12,7 @@ const Home = () => {
       <React.Fragment>
         <div className="form-container">
           <InfoSearch />
+          
           <Tasks />
         </div>
       </React.Fragment>

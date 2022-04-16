@@ -1,19 +1,34 @@
-import defaultUser from '../utils/default-user';
+import defaultUser from '../../utils/default-user';
+import Api from './index'
+import ApiConstants from '../ApiConstants'
 
-export async function signIn(email, password) {
+
+
+
+export async function signIn(userName, password) {
   try {
     // Send request
-    console.log(email, password);
+    const dataUser = await Api(ApiConstants.LOGIN, {
+            username: userName,
+            password: password,
+          }, 'post', null)
 
-    return {
-      isOk: true,
-      data: defaultUser
-    };
+    if(dataUser.user){
+      return {
+        isOk: true,
+        data: dataUser
+      };      
+    }else{
+      return {
+        isOk: false,
+        message: "Tên đăng nhập hoặc mật khẩu không chính xác!"
+      };
+    }
   }
   catch {
     return {
       isOk: false,
-      message: "Authentication failed"
+      message: "Tên đăng nhập hoặc mật khẩu không chính xác!"
     };
   }
 }
@@ -21,17 +36,25 @@ export async function signIn(email, password) {
 export async function getUser() {
   try {
     // Send request
+    const user = JSON.parse(sessionStorage.getItem("user"))
+    if(user){
+      return {
+        isOk: true,
+        data: user
+      };      
+    }else{
+      return {
+        isOk: false
+      };
+    }
 
-    return {
-      isOk: true,
-      data: defaultUser
-    };
   }
   catch {
     return {
       isOk: false
     };
   }
+
 }
 
 export async function createAccount(email, password) {
@@ -63,7 +86,7 @@ export async function changePassword(email, recoveryCode) {
   catch {
     return {
       isOk: false,
-      message: "Failed to change password"
+      message: "Fail"
     }
   }
 }
@@ -80,7 +103,7 @@ export async function resetPassword(email) {
   catch {
     return {
       isOk: false,
-      message: "Failed to reset password"
+      message: "Fail"
     };
   }
 }
