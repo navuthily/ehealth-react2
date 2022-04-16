@@ -1,7 +1,21 @@
 import { withNavigationWatcher } from './contexts/navigation';
 import { HomePage, TasksPage, ProfilePage,BenhAnComponent, XenghiemLabo, NewStaffPage } from 'pages/index';
+import { bacsigiadinh } from 'pages/bacsigd/bacsigiadinh';
 
 const routes = [
+  {
+    path: '/bacsigiadinh',
+    component: bacsigiadinh,
+    name: 'Cấu hình thời gian cho phép đặt lịch',
+    children: [
+      {
+        path: '/bacsigiadinh',
+        component: bacsigiadinh,
+        name: 'Cấu hình thời gian cho phép đặt lịch',
+        meta: { title: 'bacsigiadinh', icon: 'tab' }
+      }
+    ]
+  },
   {
     path: '/tasks',
     component: TasksPage,
