@@ -4,6 +4,7 @@ import { DataGrid, Popup } from "devextreme-react";
 import { Item } from "devextreme-react/form";
 import React, { useReducer } from "react";
 import CustomStore from "devextreme/data/custom_store";
+import ApiConstants from "api/ApiConstants";
 
 // const initialState = {
 //   focusedRowIndex: 0,
@@ -26,10 +27,9 @@ export const bacsigiadinh = () => {
   // console.log(111111111111111);
   // const [state, dispatch] = useReducer(reducer, initialState);
 
-  const URL = "http://localhost:7000/thoigiandatlich";
   const ordersData = new CustomStore({
     key: "id",
-    load: () => sendRequest(`${URL}`),
+    load: () => sendRequest(`${ApiConstants.THOI_GIAN_CHO_PHEP_DAT_LICH_KHAM}`),
 
     update: (key, values) =>
       sendRequest(`${URL}/${encodeURIComponent(key)}`, "PATCH", {
