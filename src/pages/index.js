@@ -6,3 +6,5 @@ export { default as DataGrid} from 'assets/grid/datagrid';
 export { default as XenghiemLabo} from 'pages/canlamsang/xetnghiem/xetnghiem_labo';
 export { default as NewStaffPage } from './new-staff/new-staff';
 export { default as ThoiGianLichHenKhamNgayWrap } from './thoigianlichhenkhamngay';
+export { default as Dmvt2 } from './dmvt/dmvt2';
+export { default as Nhomvattu } from './nhomvattu/nhomvattu';

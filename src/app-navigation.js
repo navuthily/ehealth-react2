@@ -55,7 +55,27 @@ export const navigation = [
             meta: { text: 'Đặt lịch hẹn', icon: 'folder', path: '/datlichhen' }
           }
         ]
-      }
+      },
+      {
+        text: 'Danh Mục Vật Tư',
+        path: '/danhmuc-vattu',
+        children: [
+          {
+            // component: TasksPage,
+            meta: { text: 'Danh Mục Vật Tư', icon: 'folder', path: '/danhmuc-vattu' }
+          }
+        ]
+      },
+      {
+        text: 'Nhóm Vật Tư',
+        path: '/nhom-vattu',
+        children: [
+          {
+            // component: TasksPage,
+            meta: { text: 'Nhóm Vật Tư', icon: 'folder', path: '/nhom-vattu' }
+          }
+        ]
+      },
     ]
   }
   // {
