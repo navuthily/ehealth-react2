@@ -19,40 +19,41 @@ const DataGridCustom = (props: any) => {
     const propertyColumn = props.column;
     const { propertyHeight, propertySelection, onCellDblClick, dataSource,filterRow } = props;
     return (
-        <DataGrid
-            className={'dx-card wide-card'}
-            dataSource={dataSource}
-            showBorders={true}
-            focusedRowEnabled={true}
-            defaultFocusedRowIndex={0}
-            columnAutoWidth={true}
-            height={propertyHeight || 100}
-            width={"100%"}
-            remoteOperations={true}
-            ref={stageCanvasRef}
-            onCellDblClick={onCellDblClick}
-        >
-            <Scrolling mode="virtual" rowRenderingMode="virtual" />
-            {/* <Paging defaultPageSize={2} /> */}
-            <Pager showPageSizeSelector={true} showInfo={true} />
-            {propertySelection && <Selection
-                mode="multiple"
-                selectAllMode={"always"}
-                showCheckBoxesMode={'onClick'}
-            />}
+        <></>
+        // <DataGrid
+        //     className={'dx-card wide-card'}
+        //     dataSource={dataSource}
+        //     showBorders={true}
+        //     focusedRowEnabled={true}
+        //     defaultFocusedRowIndex={0}
+        //     columnAutoWidth={true}
+        //     height={propertyHeight || 100}
+        //     width={"100%"}
+        //     remoteOperations={true}
+        //     ref={stageCanvasRef}
+        //     onCellDblClick={onCellDblClick}
+        // >
+        //     <Scrolling mode="virtual" rowRenderingMode="virtual" />
+        //     {/* <Paging defaultPageSize={2} /> */}
+        //     <Pager showPageSizeSelector={true} showInfo={true} />
+        //     {propertySelection && <Selection
+        //         mode="multiple"
+        //         selectAllMode={"always"}
+        //         showCheckBoxesMode={'onClick'}
+        //     />}
 
-            { filterRow &&  <FilterRow visible={true} />}
+        //     { filterRow &&  <FilterRow visible={true} />}
 
-            {/* <Column dataField={'Task_Status'} caption={'Loại Khám'} width={100} /> */}
-            {propertyColumn.map((index: any, key: any) => {
-                if(dataSource){
-                    return <Column dataField={dataSource?.select[key]} caption={index.caption} width={index.width} key={index.dataField + '_' + key} />
-                }
-                else{
-                    return <Column caption={index.caption} width={index.width} key={index.dataField + '_' + key} />
-                }
-            })}
-        </DataGrid>
+        //     {/* <Column dataField={'Task_Status'} caption={'Loại Khám'} width={100} /> */}
+        //     {propertyColumn.map((index: any, key: any) => {
+        //         if(dataSource){
+        //             return <Column dataField={dataSource?.select[key]} caption={index.caption} width={index.width} key={index.dataField + '_' + key} />
+        //         }
+        //         else{
+        //             return <Column caption={index.caption} width={index.width} key={index.dataField + '_' + key} />
+        //         }
+        //     })}
+        // </DataGrid>
     );
 }
 export default DataGridCustom

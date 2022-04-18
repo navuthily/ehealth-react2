@@ -51,7 +51,7 @@ const InfoSearch = () => {
                         <span style={{ fontWeight: "bold" }}>Danh sách bệnh nhân</span>
                     </div>
                 </div>
-                <Form
+                {/* <Form
                     colCount={6}
                     id="form"
                     formData={employee}
@@ -106,10 +106,8 @@ const InfoSearch = () => {
                         // validationRules={this.validationRules.position} 
                         />
                     </GroupItem>
-                    {/* <ButtonItem horizontalAlignment="left"
-                    //buttonOptions={buttonOptions}
-                    /> */}
-                </Form>
+               
+                </Form> */}
             </div>
         </React.Fragment>
     );
