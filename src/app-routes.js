@@ -1,6 +1,6 @@
 import { withNavigationWatcher } from './contexts/navigation';
-import { HomePage, TasksPage, ProfilePage,BenhAnComponent, XenghiemLabo, NewStaffPage } from 'pages/index';
 import { bacsigiadinh } from 'pages/bacsigd/bacsigiadinh';
+import { HomePage, TasksPage, ProfilePage,BenhAnComponent, XenghiemLabo, NewStaffPage, ThoiGianLichHenKhamNgayWrap } from 'pages/index';
 
 const routes = [
   {
@@ -117,6 +117,19 @@ const routes = [
         component: BenhAnComponent,
         name: 'xquang',
         meta: {  icon: 'tab', text:'xquang', path : '/xquang/:benhanId'  }
+      }
+    ]
+  },
+  {
+    path: '/datlichhen',
+    component: ThoiGianLichHenKhamNgayWrap,
+    name: 'datlichhen',
+    children: [
+      {
+        path: '/datlichhen',
+        component: ThoiGianLichHenKhamNgayWrap,
+        name: 'xquang',
+        meta: { title: 'datlichhen', icon: 'tab' }
       }
     ]
   }

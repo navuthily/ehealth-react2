@@ -26,6 +26,36 @@ export const navigation = [
           }
         ]
       },
+      {
+        text: 'Tasks',
+        path: '/tasks',
+        children: [
+          {
+            // component: TasksPage,
+            meta: { text: 'Tasks', icon: 'folder', path: '/tasks' }
+          }
+        ]
+      },
+      {
+        text: 'New staff',
+        path: '/new-staff',
+        children: [
+          {
+            // component: TasksPage,
+            meta: { text: ' New Staff', icon: 'folder', path: '/new-staff' }
+          }
+        ]
+      },
+      {
+        text: 'Đặt lịch hẹn',
+        path: '/datlichhen',
+        children: [
+          {
+            // component: TasksPage,
+            meta: { text: 'Đặt lịch hẹn', icon: 'folder', path: '/datlichhen' }
+          }
+        ]
+      }
     ]
   }
   // {
