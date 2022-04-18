@@ -29,10 +29,10 @@ export const bacsigiadinh = () => {
 
   const ordersData = new CustomStore({
     key: "id",
-    load: () => sendRequest(`${ApiConstants.THOI_GIAN_CHO_PHEP_DAT_LICH_KHAM}`),
+    load: () => sendRequest(`${ApiConstants.BASE_URL}${ApiConstants.THOI_GIAN_CHO_PHEP_DAT_LICH_KHAM}`),
 
     update: (key, values) =>
-      sendRequest(`${URL}/${encodeURIComponent(key)}`, "PATCH", {
+      sendRequest(`${ApiConstants.BASE_URL}${ApiConstants.THOI_GIAN_CHO_PHEP_DAT_LICH_KHAM}/${encodeURIComponent(key)}`, "PATCH", {
         key,
         values: values,
       }),
