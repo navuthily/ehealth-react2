@@ -3683,6 +3683,9 @@
   -ms-user-select: text;
   user-select: text;
 }
+.dx-swatch-additional .dx-texteditor-input:-webkit-autofill + .dx-placeholder {
+  display: none!important;
+}
 .dx-swatch-additional .dx-texteditor-input:autofill + .dx-placeholder {
   display: none!important;
 }

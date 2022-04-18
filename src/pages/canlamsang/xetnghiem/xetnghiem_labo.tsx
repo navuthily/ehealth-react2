@@ -1,6 +1,6 @@
 import React from "react";
 import KeepAlive from "react-activation";
-import Form, { GroupItem, Item, SimpleItem } from 'devextreme-react/form';
+import  { GroupItem, Item, SimpleItem ,Form } from 'devextreme-react/form';
 import { Button, SelectBox, Tabs } from "devextreme-react";
 import ButtonCustom from "assets/button/button";
 import './style.scss';
@@ -39,8 +39,8 @@ export const GridTop = () => {
     return (
         <>
             <React.Fragment>
-                <div className="form-container">
-                    <Form
+          
+                    {/* <Form
                         colCount={2}
                         id="form"
                         formData={{}}
@@ -227,7 +227,7 @@ export const GridTop = () => {
                             </div>
                         </GroupItem>
                     </Form >
-                </div >
+        */}
             </React.Fragment >
         </>
     )
@@ -237,7 +237,7 @@ export const GridBody = () => {
     return (
         <>
             <React.Fragment>
-                <Form
+                {/* <Form
                     colCount={2}
                     id="form"
                     formData={{}}
@@ -370,7 +370,7 @@ export const GridBody = () => {
                         </div>
                         <DataGridCustom column={[{ caption: 'Tên thuốc' }, { caption: 'Giá bán' }, { caption: 'Đ.Dùng' }, { caption: 'SL' }, { caption: 'tổng' }, { caption: 'C.dùng' }, { caption: 'T.hiện' }, { caption: 'Cách dùng chi tiết' }]} propertySelection={true} propertyHeight={330} onCellDblClick={handleOnDbClickCell} />
                     </GroupItem>
-                </Form >
+                </Form > */}
             </React.Fragment >
         </>
     )
