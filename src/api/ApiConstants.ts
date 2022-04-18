@@ -12,10 +12,10 @@ const ApiConstants = {
   
 
   THOI_GIAN_LICH_HEN_KHAM_GIO_URL: 'thoigianlichhenkhamgio',
-  GET_ALL_THOI_GIAN_LICH_HEN_KHAM_GIO: 'thoigianlichhenkhamgio?join=userCreatedBy||nickname&join=userUpdatedBy||nickname&filter=thoigianlichhenkham_id||$eq||'
+  GET_ALL_THOI_GIAN_LICH_HEN_KHAM_GIO: 'thoigianlichhenkhamgio?join=userCreatedBy||nickname&join=userUpdatedBy||nickname&filter=thoigianlichhenkham_id||$eq||',
 
 
-
+  THOI_GIAN_CHO_PHEP_DAT_LICH_KHAM: "http://localhost:7000/thoigiandatlich",
 
 }
 
