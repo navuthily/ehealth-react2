@@ -16,7 +16,7 @@ import CheckBox from 'devextreme-react/check-box';
 import { Button } from 'devextreme-react/button';
 import './new-staff.scss'
 import 'devextreme/dist/css/dx.common.css';
-import 'devextreme/dist/css/dx.material.blue.light.compact.css';
+import 'devextreme/dist/css/dx.greenmist.compact.css';
 import CustomStore from 'devextreme/data/custom_store';
 import 'whatwg-fetch';
 import 'devextreme-intl';
