@@ -13,67 +13,37 @@ export const navigation = [
     ]
   },
 
-  {
-    text: 'Danh mục',
-    icon: 'folder',
-    items: [
+    {
+      text: 'Danh mục',
+      icon: 'folder',
+      items: [
+
+    {
+      text: 'Mẫu hợp đồng',
+      path: '/template-contract',
+      children: [
+        {
+          // component: TasksPage,
+          meta: { text: 'Mẫu hợp đồng', icon: 'folder', path: '/template-contract'}
+        }
+      ]
+    },
+    {
+      text: 'New staff',
+      path: '/new-staff',
+      children: [
+        {
+          // component: TasksPage,
+          meta: { text: ' New Staff', icon: 'folder', path: '/new-staff' }
+        }
+      ]
+    }
+  ]},
 
   {
-    text: 'Mẫu hợp đồng',
-    path: '/template-contract',
-    children: [
-      {
-        // component: TasksPage,
-        meta: { text: 'Mẫu hợp đồng', icon: 'folder', path: '/template-contract'}
-      }
-    ]
-  },
-  {
-    text: 'New staff',
-    path: '/new-staff',
-    children: [
-      {
-        // component: TasksPage,
-        meta: { text: ' New Staff', icon: 'folder', path: '/new-staff' }
-      }
-    ]
-  }
-]},
-  {
-    text: 'Bác sĩ Gia Đình',
+    text: 'Căn tin',
     icon: 'folder',
     items: [
-      {
-        text: 'Cấu hình thời gian cho phép đặt lịch',
-        path: '/bacsigiadinh',
-        children: [
-          {
-            // component: ProfilePage,
-            meta: { text: 'Cấu hình thời gian cho phép đặt lịch', icon: 'folder', path: '/bacsigiadinh' }
-          }
-        ]
-      },
-      {
-        text: 'Tasks',
-        path: '/tasks',
-        children: [
-          {
-            // component: TasksPage,
-            meta: { text: 'Tasks', icon: 'folder', path: '/tasks' }
-          }
-        ]
-      },
-     
-      {
-        text: 'Đặt lịch hẹn',
-        path: '/datlichhen',
-        children: [
-          {
-            // component: TasksPage,
-            meta: { text: 'Đặt lịch hẹn', icon: 'folder', path: '/datlichhen' }
-          }
-        ]
-      },
       {
         text: 'Danh Mục Vật Tư',
         path: '/danhmuc-vattu',
@@ -91,6 +61,43 @@ export const navigation = [
           {
             // component: TasksPage,
             meta: { text: 'Nhóm Vật Tư', icon: 'folder', path: '/nhom-vattu' }
+          }
+        ]
+      },
+    ]
+  },
+  {
+    text: 'Bác sĩ Gia Đình',
+    icon: 'folder',
+    items: [
+      {
+        text: 'Cấu hình thời gian cho phép đặt lịch',
+        path: '/bacsigiadinh',
+        children: [
+          {
+            // component: ProfilePage,
+            meta: { text: 'Cấu hình thời gian cho phép đặt lịch', icon: 'folder', path: '/bacsigiadinh' }
+          }
+        ]
+      },
+      // {
+      //   text: 'Tasks',
+      //   path: '/tasks',
+      //   children: [
+      //     {
+      //       // component: TasksPage,
+      //       meta: { text: 'Tasks', icon: 'folder', path: '/tasks' }
+      //     }
+      //   ]
+      // },
+     
+      {
+        text: 'Đặt lịch hẹn',
+        path: '/datlichhen',
+        children: [
+          {
+            // component: TasksPage,
+            meta: { text: 'Đặt lịch hẹn', icon: 'folder', path: '/datlichhen' }
           }
         ]
       },
