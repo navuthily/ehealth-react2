@@ -8,3 +8,5 @@ export { default as NewStaffPage } from './new-staff/new-staff';
 export { default as ThoiGianLichHenKhamNgayWrap } from './thoigianlichhenkhamngay';
 export { default as Dmvt2 } from './dmvt/dmvt2';
 export { default as Nhomvattu } from './nhomvattu/nhomvattu';
+export { default as TemplateContractPage } from './template-contract/template-contract';
+export { default as ContractPage } from './contract/contract'

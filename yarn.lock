@@ -1110,6 +1110,13 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
+"@devexpress/utils@1.3.12":
+  version "1.3.12"
+  resolved "https://registry.yarnpkg.com/@devexpress/utils/-/utils-1.3.12.tgz#7938c94b9a01b4d4b79aa8cdc112d3083a8a6ba3"
+  integrity sha512-VXueBKt508Q70gZDJiJWJOeIHYQyK84fHAcYJtzuAFzz0M2PVw6KyVVBKMOA9SzhBp9Y6Jtqtr2xP0yWtohhmw==
+  dependencies:
+    tslib "2.0.1"
+
 "@devexpress/utils@1.3.13":
   version "1.3.13"
   resolved "https://registry.yarnpkg.com/@devexpress/utils/-/utils-1.3.13.tgz#dc51cf7028bc21e4502bc3968df9be10fc92b369"
@@ -4302,6 +4309,15 @@ devexpress-gantt@4.0.12:
     "@devexpress/utils" "1.3.14"
     tslib "2.3.1"
 
+devexpress-richedit@^21.2.6:
+  version "21.2.6"
+  resolved "https://registry.yarnpkg.com/devexpress-richedit/-/devexpress-richedit-21.2.6.tgz#073c4f0e8fb8a945b7e75b816c74f48d22879744"
+  integrity sha512-19iSjIs4pn4w9y/qTnIH8dbLcIOnpqSCcEIdsqUBFGg07BTKcGeKn7kgnFrBcmEYv+Cclzck/FjkJ7e/YFfnGw==
+  dependencies:
+    "@devexpress/utils" "1.3.12"
+    jszip "~3.7.0"
+    tslib "2.0.1"
+
 devextreme-aspnet-data-nojquery@^2.8.6:
   version "2.8.6"
   resolved "https://registry.yarnpkg.com/devextreme-aspnet-data-nojquery/-/devextreme-aspnet-data-nojquery-2.8.6.tgz#5ad6a6f5aa4d20696daa74fea5d3aad533b70525"
@@ -7266,6 +7282,11 @@ jest@26.6.0:
     import-local "^3.0.2"
     jest-cli "^26.6.0"
 
+js-base64@^3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-3.7.2.tgz#816d11d81a8aff241603d19ce5761e13e41d7745"
+  integrity sha512-NnRs6dsyqUXejqk/yv2aiXlAvOs56sLkX6nUdeaNezI5LFFLlsZjOThmwnrcwh5ZZRwZlCMnVAY3CvhIhoVEKQ==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -7420,6 +7441,16 @@ jszip@^3.7.1:
   version "3.9.1"
   resolved "https://registry.yarnpkg.com/jszip/-/jszip-3.9.1.tgz#784e87f328450d1e8151003a9c67733e2b901051"
   integrity sha512-H9A60xPqJ1CuC4Ka6qxzXZeU8aNmgOeP5IFqwJbQQwtu2EUYxota3LdsiZWplF7Wgd9tkAd0mdu36nceSaPuYw==
+  dependencies:
+    lie "~3.3.0"
+    pako "~1.0.2"
+    readable-stream "~2.3.6"
+    set-immediate-shim "~1.0.1"
+
+jszip@~3.7.0:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/jszip/-/jszip-3.7.1.tgz#bd63401221c15625a1228c556ca8a68da6fda3d9"
+  integrity sha512-ghL0tz1XG9ZEmRMcEN2vt7xabrDdqHHeykgARpmZ0BiIctWxM47Vt63ZO2dnp4QYt/xJVLLy5Zv1l/xRdh2byg==
   dependencies:
     lie "~3.3.0"
     pako "~1.0.2"

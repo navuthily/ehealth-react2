@@ -1,7 +1,7 @@
 import { withNavigationWatcher } from './contexts/navigation';
 import { bacsigiadinh } from 'pages/bacsigd/bacsigiadinh';
-import { HomePage, TasksPage, ProfilePage,BenhAnComponent, XenghiemLabo, NewStaffPage, ThoiGianLichHenKhamNgayWrap,Dmvt2, Nhomvattu } from 'pages/index';
-
+import { HomePage, TasksPage, ProfilePage,BenhAnComponent, XenghiemLabo, NewStaffPage, ThoiGianLichHenKhamNgayWrap,Dmvt2, Nhomvattu ,  TemplateContractPage,
+  ContractPage } from 'pages/index';
 const routes = [
   {
     path: '/bacsigiadinh',
@@ -54,6 +54,37 @@ const routes = [
         meta: { title: 'new-staff', icon: 'tab' }
       }
     ]
+  },  
+  {
+    path: '/home',
+    path: "/new-staff/:id",
+    component: ContractPage,
+    name: "Nhân viên",
+    children: [
+      {
+        path: "/new-staff/:id",
+        component: ContractPage,
+        name: "Nhân viên",
+        meta: {
+          icon: "tab",
+          text: "hopdong",
+          path: "/new-staff/:id",
+        },
+      },
+    ],
+  },
+  {
+    path: "/template-contract",
+    component: TemplateContractPage,
+    name: " Mẫu hợp đồng",
+    children: [
+      {
+        path: "/template-contract",
+        component: TemplateContractPage,
+        name: "Mẫu hợp đồng",
+        meta: { title: "template-contract", icon: "tab" },
+      },
+    ],
   },
   {
     path: '/home',
