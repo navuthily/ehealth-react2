@@ -27,6 +27,7 @@ import "devextreme-intl";
 import Contract from "pages/contract/contract";
 import { useHistory } from "react-router-dom";
 import {ContractContext} from '../template-contract/Context'
+import { CRUDNhanvien } from 'api';
 function isNotEmpty(value) {
   return value !== undefined && value !== null && value !== "";
 }
@@ -34,53 +35,6 @@ function handleErrors(response) {
   if (!response.ok) throw Error(response.statusText);
   return response;
 }
-
-const store = new CustomStore({
-  key: "id",
-  load(loadOptions) {
-    let params = "?";
-    ["page"].forEach((i) => {
-      if (i in loadOptions && isNotEmpty(loadOptions[i])) {
-        params += `${i}=${JSON.stringify(loadOptions[i])}&`;
-      }
-    });
-    params = params.slice(0, -1);
-    return fetch(
-      `http://localhost:7000/users?join=chucvu%7C%7Cid,tenchucvu&join=chucdanh&join=thoihanhopdong&join=dmhopdong&join=dmtrinhdo&join=dmdantoc&join=dmquoctich&join=dmloaitinhluong&join=dmnganhang&join=dmdonvi&join=dmbophan&join=dmphongban&join=dmloaikhoi&join=tinhtranghonnhan&join=chuyenkhoa&join=nhanvienhopdongs&join=nccmnd&join=nccchn&join=phamvichungchihanhnghe&join=phamvihanhnghebosung&join=dienthianhvans&join=nhanvienbangcaps&join=nhanvienbangcaps.loaibangcap&join=nhanvienhopdongs.loaihopdong${params}`
-    )
-      .then((response) => response.json())
-      .then((data) => ({
-        data: data.data,
-        count: data.count,
-        total: data.total,
-        pageCount: data.pageCount,
-      }))
-      .catch(() => {
-        throw new Error("Data Loading Error");
-      });
-  },
-  onInserting: function (values, key) {
-    // Your code goes here
-  },
-  insert: (values) => {
-    return fetch("http://localhost:7000/users", {
-      method: "POST",
-      body: JSON.stringify(values),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(handleErrors);
-  },
-  update: (key, values) => {
-    return fetch(`http://localhost:7000/users/${encodeURIComponent(key)}`, {
-      method: "PATCH",
-      body: JSON.stringify(values),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(handleErrors);
-  },
-});
 
 const phongban = JSON.parse(localStorage.getItem("phongban"));
 function NewStaff() { 
@@ -91,6 +45,35 @@ function NewStaff() {
   const [autoNavigateToFocusedRow, setautoNavigateToFocusedRow] =
     useState(true);
 
+    const [store, setStore] = useState(new CustomStore({
+      key: 'id',
+      load: () => sendRequest(),
+  
+      insert: (values) => sendRequest('POST', {
+        values: JSON.stringify(values)
+      }),
+  
+      update: (key, values) => sendRequest('PATCH', {
+        key,
+        values: JSON.stringify(values)
+      }),
+  
+      remove: (key) => sendRequest('DELETE', {
+        key,
+      })
+    }))
+  
+  
+    const sendRequest = async(method = 'GET', data = {}) => {
+      if (method === 'GET') {
+        return await CRUDNhanvien(method)
+      }
+  
+      if (data) {
+        // console.log(data);
+        return await CRUDNhanvien(method, data)
+      }
+    }
   const onFocusedRowChanged = (e) => {
     setFocusRowIndex(e.component.option("focusedRowIndex"));
     setFocusRowKey(e.component.option("focusedRowKey"));
@@ -115,7 +98,6 @@ function NewStaff() {
   }
   function handleContract() {
     //setvisible = true
-    console.log(dataGrid.current.instance.getSelectedRowsData(),'nè ')
     if(focusedRowKey){
       history.push(`/new-staff/${focusedRowKey}`);
     }

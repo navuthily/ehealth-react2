@@ -1,120 +1,132 @@
+import React, { useEffect, useState, useContext } from "react";
+import { ThemContext } from "../template-contract/Context";
+import CustomStore from "devextreme/data/custom_store";
+// import "devextreme/dist/css/dx.dark.css";
+import "devexpress-richedit/dist/dx.richedit.css";
+import "devextreme/dist/css/dx.common.css";
+import "devextreme/dist/css/dx.material.blue.light.compact.css";
+import {
+  create,
+  RichEdit,
+  DocumentFormat,
 
-    // import React from 'react'
-    
-    // export default function RichTextContract() {
-    //   return (
-    //     <div>richtext-editor</div>
-    //   )
-    // }
-    import React from 'react';
+} from "devexpress-richedit";
 
-import 'devextreme/dist/css/dx.common.css';
-import 'devextreme/dist/css/dx.light.css';
-import 'devexpress-richedit/dist/dx.richedit.css';
+import options from "./options";
+import { CRUDNhanvien, CRUDHopdongNhanvien } from "api";
+import DataSource from "devextreme/data/data_source";
+import ArrayStore from "devextreme/data/array_store";
+var rich = RichEdit;
+export default function RichTextContract() {
+  const { templateContract, idNhanvien, hopdong, setName } =
+    useContext(ThemContext);
+  const [employee, setEmployee] = useState([]);
+  const [noidungsua, setnoidungsua] = useState(null);
+  const dataEmployee = new DataSource({
+    store: new ArrayStore({
+      data: [employee],
+    }),
+  });
+  const sendRequest = async (method = "GET", data = {}) => {
+    if (method === "GET") {
+      return await CRUDNhanvien(method, idNhanvien);
+    }
 
-import { create, createOptions, RichEdit, ViewType, RichEditUnit, DocumentFormat } from 'devexpress-richedit';
+    if (data) {
+      return await CRUDNhanvien(method, data);
+    }
+  };
+  const sendRequestEmployeeContract = async (method, data = {}) => {
+    if (method === "GET") {
+      return await CRUDHopdongNhanvien(method, idNhanvien);
+    }
 
-function RichTextContract() {
+    if (data) {
+      return await CRUDHopdongNhanvien(method, data);
+    }
+  };
+  useEffect(() => {
+    const richEditEl = document.getElementById("richEdit");
+    try {
+      rich = create(richEditEl, options);
+
+      rich.saveDocument(DocumentFormat.Rtf);
+    } catch (error) {
+      console.log("Rich ERROR", error);
+    }
+    sendRequest("GET", idNhanvien).then((data) => {
+      setEmployee(data);
+    });
+  }, []);
+
+  useEffect(() => {
+    console.log("select temp...");
+    try {
+      rich.saveDocument(DocumentFormat.Rtf);
+
+      if (templateContract?.noidung) {
+        rich.openDocument(
+          templateContract?.noidung,
+          "DocumentName",
+          DocumentFormat.Rtf
+          ,()=>{
+            rich.mailMergeOptions.viewMergedData = false;
+            rich.mailMergeOptions.viewMergedData = true;
+          }
+        );
+      } else {
+        rich.newDocument();
+      }
+      console.log(dataEmployee);
+
+
+
+      rich.mailMergeOptions.setDataSource(dataEmployee);
+
+
+    } catch (error) {
+      console.log("Rich ERROR", error);
+    }
+  }, [templateContract]);
+
+  useEffect(() => {
+    const dataChanged = {
+      ...hopdong,
+      noidunghopdong: noidungsua,
+    };
+    if (hopdong) {
+      sendRequestEmployeeContract("PATCH", {
+        values: dataChanged,
+        key: hopdong?.id,
+      }).then(() => {
+        setName(noidungsua);
+      });
+    }
+  }, [noidungsua]);
+
+  useEffect(() => {
+    try {
+      if (hopdong?.noidunghopdong) {
+        rich.openDocument(
+          hopdong?.noidunghopdong,
+          "DocumentName",
+          DocumentFormat.Rtf
+        );
+      } else {
+        rich.newDocument();
+      }
+      rich.events.saving.addHandler(function (s, e) {
+        setnoidungsua(e.base64);
+        e.handled = false;
+      });
+    } catch (error) {
+      console.log("Rich ERROR", error);
+    }
+  }, [hopdong]);
+
   return (
-    <RichEditComponent/>
+    <>
+      <div id="richEdit"></div>
+    </>
   );
-}
-
-export default RichTextContract;
-
-class RichEditComponent extends React.Component {
-  rich = RichEdit; 
-
-  componentDidMount() {
-    // the createOptions() method creates an object that contains RichEdit options initialized with default values
-    const options = createOptions();
-
-    options.bookmarks.visibility = true;
-    options.bookmarks.color = '#ff0000';
-
-    options.confirmOnLosingChanges.enabled = true;
-    options.confirmOnLosingChanges.message = 'Are you sure you want to perform the action? All unsaved document data will be lost.';
-
-    options.fields.updateFieldsBeforePrint = true;
-    options.fields.updateFieldsOnPaste = true;
-
-    options.mailMerge.activeRecord = 2;
-    options.mailMerge.viewMergedData = true;
-    options.mailMerge.dataSource = [
-        { Name: 'Indy', age: 32 },
-        { Name: 'Andy', age: 28 },
-    ];
-
-    // events
-    options.events.activeSubDocumentChanged = () => { };
-    options.events.autoCorrect = () => { };
-    options.events.calculateDocumentVariable = () => { };
-    options.events.characterPropertiesChanged = () => { };
-    options.events.contentInserted = () => { };
-    options.events.contentRemoved = () => { };
-    options.events.documentChanged = () => { };
-    options.events.documentFormatted = () => { };
-    options.events.documentLoaded = () => { };
-    options.events.gotFocus = () => { };
-    options.events.hyperlinkClick = () => { };
-    options.events.keyDown = () => { };
-    options.events.keyUp = () => { };
-    options.events.paragraphPropertiesChanged = () => { };
-    options.events.lostFocus = () => { };
-    options.events.pointerDown = () => { };
-    options.events.pointerUp = () => { };
-    options.events.saving = () => { };
-    options.events.saved = () => { };
-    options.events.selectionChanged = () => { };    
-    options.events.customCommandExecuted = (s, e) => {
-        switch (e.commandName) {
-        case 'insertEmailSignature':
-            s.document.insertParagraph(s.document.length);
-            s.document.insertText(s.document.length, '_________');
-            s.document.insertParagraph(s.document.length);
-            s.document.insertText(s.document.length, 'Best regards,');
-            s.document.insertParagraph(s.document.length);
-            s.document.insertText(s.document.length, 'John Smith');
-            s.document.insertParagraph(s.document.length);
-            s.document.insertText(s.document.length, 'mailto:john@example.com');
-            s.document.insertParagraph(s.document.length);
-            s.document.insertText(s.document.length, '+1 (818) 844-0000');
-            break;
-        }
-    };
-
-    options.unit = RichEditUnit.Inch;
-
-    options.view.viewType = ViewType.PrintLayout;
-    options.view.simpleViewSettings.paddings = {
-        left: 15,
-        top: 15,
-        right: 15,
-        bottom: 15,
-    };
-    options.exportUrl = 'https://siteurl.com/api/';
-
-    options.readOnly = false;
-    options.width = '1400px';
-    options.height = '800px';
-
-    this.rich = create(document.getElementById("richEdit"), options);
-    
-    var documentAsBase64 = "e1xydGYxXGRlZmYwe1xmb250dGJse1xmMCBDYWxpYnJpO319e1xjb2xvcnRibCA7XHJlZDB"
-        + "cZ3JlZW4wXGJsdWUyNTUgO1xyZWQyNTVcZ3JlZW4yNTVcYmx1ZTI1NSA7fXtcKlxkZWZjaHAgXGZzMjJ9e1xzdHl"
-        + "sZXNoZWV0IHtccWxcZnMyMiBOb3JtYWw7fXtcKlxjczFcZnMyMiBEZWZhdWx0IFBhcmFncmFwaCBGb250O317XCp"
-        + "cY3MyXGZzMjJcY2YxIEh5cGVybGluazt9e1wqXHRzM1x0c3Jvd2RcZnMyMlxxbFx0c3ZlcnRhbHRcdHNjZWxsY2J"
-        + "wYXQyXHRzY2VsbHBjdDBcY2x0eGxydGIgTm9ybWFsIFRhYmxlO319e1wqXGxpc3RvdmVycmlkZXRhYmxlfXtcaW5"
-        + "mb31cbm91aWNvbXBhdFxzcGx5dHduaW5lXGh0bWF1dHNwXGV4cHNocnRuXHNwbHRwZ3BhclxkZWZ0YWI3MjBcc2V"
-        + "jdGRcbWFyZ2xzeG4xNDQwXG1hcmdyc3huMTQ0MFxtYXJndHN4bjE0NDBcbWFyZ2JzeG4xNDQwXGhlYWRlcnk3MjB"
-        + "cZm9vdGVyeTcyMFxwZ3dzeG4xMjI0MFxwZ2hzeG4xNTg0MFxjb2xzMVxjb2xzeDcyMFxwYXJkXHBsYWluXHFse1x"
-        + "mczIyXGNmMFxjczEgRG9jdW1lbnQgdGV4dH1cZnMyMlxjZjBccGFyfQ==";
-    this.rich.openDocument(documentAsBase64, 'DocumentName', DocumentFormat.Rtf);
-  }
-
-  render() {
-    return (
-       <div id="richEdit"></div>
-    );
- }
 }

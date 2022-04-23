@@ -32,15 +32,6 @@ export default function RichEditComponent() {
       data: employees,
     }),
 
-    // map: function (dataItem) {
-    //     return {...dataItem,
-
-    //       nhanvienbangcaps: dataItem?.nhanvienbangcaps?.map((item) => (
-    //        `${item?.loaibangcap?.tenloaibangcap}, `
-    //       )),
-    //       dmdonvi:dataItem?.dmdonvi?.tendonvi?dataItem?.dmdonvi?.tendonvi:""
-    //     };
-    // }
   });
   useEffect(() => {
     const richEditEl = document.getElementById("richEdit");
@@ -61,17 +52,13 @@ export default function RichEditComponent() {
               a.removeItem(enumMember);
             }
 
-            // console.log("enum member: ", MailMergeTabItemId[enumMember]);
           }
         }
       });
 
-      rich.openDocument(documentAsBase64, "DocumentName", DocumentFormat.Rtf);
       rich.saveDocument(DocumentFormat.Rtf);
 
-      // rich.events.documentLoaded.addHandler(function (s, e) {
-      //   s.executeCommand(MailMergeTabCommandId.ToggleViewMergedData, true);
-      // });
+
     } catch (error) {
       console.log("Rich ERROR", error);
     }

@@ -12,7 +12,8 @@ options.confirmOnLosingChanges.message =
 options.fields.updateFieldsBeforePrint = true;
 options.fields.updateFieldsOnPaste = true;
 // options.document.protect = 'www'
-
+// options.mailMerge.activeRecord = 2;
+// options.mailMerge.viewMergedData = true;
 options.mailMerge.activeRecord = 1;
 options.mailMerge.viewMergedData = false;
 // options.mailMerge.dataSource = [
@@ -79,7 +80,7 @@ options.view.simpleViewSettings.paddings = {
 options.exportUrl = "http://localhost:3030/richserver";
 
 options.readOnly = false;
-options.width = "1000px";
-options.height = "1000px";
+// options.width = "1000px";
+// options.height = "1000px";
 
 export default options;

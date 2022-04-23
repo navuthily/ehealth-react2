@@ -1,19 +1,208 @@
-import React, { useState, useMemo,useContext,useEffect } from "react";
+import DataGrid, {
+  Column,
+  Editing,
+  FilterRow,
+  Popup,
+  Scrolling,
+  Selection,
+  Lookup,
+} from "devextreme-react/data-grid";
+import CustomStore from "devextreme/data/custom_store";
+import "devextreme/dist/css/dx.common.css";
+import "devextreme/dist/css/dx.material.blue.light.compact.css";
 import { useParams } from "react-router-dom";
+import React, {
+  useCallback,
+  useMemo,
+  useState,
+  useContext,
+  useEffect,
+} from "react";
 import RichTextContract from "./richtext-editor";
-import { getApi, patchApi } from "../../callApi";
-export default function Contract() {
-  let { id } = useParams();
+import options from "../template-contract/data/options";
+import { CRUDHopdongNhanvien, CRUDMauHopDong } from "api";
+import { ThemContext } from "../template-contract/Context";
+import SelectBox from "devextreme-react/select-box";
+import "./contract.scss"
+const loaihopdong = JSON.parse(localStorage.getItem("loaihopdong"));
+function Contract() {
+  const [templateContract, setTemplateContract] = useState(null);
+  const [hopdong, sethopdong] = useState(null);
+  const [name, setName] = useState(null);
   useEffect(() => {
-    getApi(
-      `users/${id}?join=chucvu%7C%7Cid,tenchucvu&join=chucdanh&join=thoihanhopdong&join=dmhopdong&join=dmtrinhdo&join=dmdantoc&join=dmquoctich&join=dmloaitinhluong&join=dmnganhang&join=dmdonvi&join=dmbophan&join=dmphongban&join=dmloaikhoi&join=tinhtranghonnhan&join=chuyenkhoa&join=nhanvienhopdongs&join=nccmnd&join=nccchn&join=phamvichungchihanhnghe&join=phamvihanhnghebosung&join=dienthianhvans&join=nhanvienbangcaps&join=nhanvienbangcaps.loaibangcap&join=nhanvienhopdongs.loaihopdong`
-    ).then((data) => {
-      console.log(data?.data,"data nè");
-    });
+    fetch("http://localhost:7000/dmloaihopdong")
+      .then((response) => response.json())
+      .then((data) => {
+        localStorage.setItem("loaihopdong", JSON.stringify(data));
+      })
+      .catch((err) => console.log(err));
   }, []);
-  return (
+  function isNotEmpty(value) {
+    return value !== undefined && value !== null && value !== "";
+  }
+  function handleErrors(response) {
+    if (!response.ok) throw Error(response.statusText);
+    return response;
+  }
+  let { id: idNhanvien } = useParams() || {};
+  const sendRequest = async (method = "GET", data = {}) => {
+    if (method === "GET") {
+      return await CRUDHopdongNhanvien(method, {idNhanvien});
+    }
+    
+    if (data) {
+      return await CRUDHopdongNhanvien(method, data);
+    }
+  };
 
-<RichTextContract/> 
-  
+  const store = useMemo(() => {
+    return new CustomStore({
+      key: "id",
+      load: () => sendRequest(),
+
+      insert: (values) =>
+        sendRequest("POST", {
+          values: JSON.stringify({...values,nhanvienId:idNhanvien}),
+        }),
+
+      update: (key, values) =>
+        sendRequest("PATCH", {
+          key,
+          values:JSON.stringify(values),
+        }),
+
+      remove: (key) =>
+        sendRequest("DELETE", {
+          key,
+        }),
+    });
+  }, [name]);
+
+  const [templates, setTemplates] = useState(
+    new CustomStore({
+      key: "id",
+      load: () => sendRequestTemplateContract(),
+
+      insert: (values) =>
+        sendRequestTemplateContract("POST", {
+          values: JSON.stringify(values),
+        }),
+
+      update: (key, values) =>
+        sendRequestTemplateContract("PATCH", {
+          key,
+          values: JSON.stringify(values),
+        }),
+
+      remove: (key) =>
+        sendRequestTemplateContract("DELETE", {
+          key,
+        }),
+    })
+  );
+  const sendRequestTemplateContract = async (method = "GET", data = {}) => {
+    if (method === "GET") {
+      return await CRUDMauHopDong(method);
+    }
+
+    if (data) {
+      return await CRUDMauHopDong(method, data);
+    }
+  };
+
+  const onSelectionChanged = useCallback(({ selectedRowsData }) => {
+    const data = selectedRowsData[0];
+    sethopdong(data);
+  }, []);
+  const values = {
+    hopdong,
+    store,
+    onSelectionChanged,
+    name,
+    setName,
+    options,
+    templateContract,
+    idNhanvien,
+  };
+  function handleSelectChanged(e) {
+    setTemplateContract(e.selectedItem);
+  }
+  return (
+    <ThemContext.Provider value={values}>
+      <div className="main">
+        <div className="selecbox-lf">
+          <Grid />
+          <SelectBox
+            id="custom-templates"
+            dataSource={templates}
+            displayExpr="loaitemplate"
+            valueExpr="id"
+            onSelectionChanged={handleSelectChanged}
+          />
+        </div>
+        <div className="richeditor">
+          <RichTextContract />
+        </div>
+      </div>
+    </ThemContext.Provider>
   );
 }
+
+const Grid = () => {
+  const { store, onSelectionChanged, name } = useContext(ThemContext);
+
+  return (
+    <>
+      <DataGrid
+        className={`dgr-contract`}
+        dataSource={store}
+        height="200"
+        showBorders={true}
+        allowColumnReordering={true}
+        focusedRowEnabled={true}
+        keyExpr="id"
+        onSelectionChanged={onSelectionChanged}
+      >
+        <Editing
+          mode="popup"
+          allowUpdating={true}
+          allowAdding={true}
+          allowDeleting={true}
+        >
+          <Popup title="Hợp đồng" showTitle={true} width={700} height={525} />
+        </Editing>
+
+        <Column dataField="loaihopdongId" caption="Loại hợp đồng">
+          <Lookup
+            dataSource={loaihopdong}
+            valueExpr="id"
+            displayExpr="tenloaihopdong"
+          />
+        </Column>
+        <Column
+          dataField="ngaybatdau"
+          dataType="date"
+          caption="Ngày bắt đầu"
+          visible={false}
+        />
+        <Column
+          dataField="ngayketthuc"
+          dataType="date"
+          caption="Ngày kết thúc"
+          visible={false}
+        />
+
+        <Selection mode="single" />
+
+        <Scrolling
+          rowRenderingMode="virtual"
+          mode="virtual"
+          columnRenderingMode="virtual"
+        />
+        <FilterRow visible={true} />
+      </DataGrid>
+    </>
+  );
+};
+
+export default Contract;
