@@ -29,7 +29,7 @@ export default function RichTextContract() {
   });
   const sendRequest = async (method = "GET", data = {}) => {
     if (method === "GET") {
-      return await CRUDNhanvien(method, idNhanvien);
+      return await CRUDNhanvien(method, {key:idNhanvien});
     }
 
     if (data) {

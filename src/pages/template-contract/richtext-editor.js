@@ -20,6 +20,7 @@ import "./richtext-editor.scss";
 import DataSource from "devextreme/data/data_source";
 import ArrayStore from "devextreme/data/array_store";
 import { ThemContext } from "./Context";
+import { CRUDMauHopDong } from "api";
 var rich = RichEdit;
 export default function RichEditComponent() {
   const renderCount = useRef(0);
@@ -31,8 +32,16 @@ export default function RichEditComponent() {
     store: new ArrayStore({
       data: employees,
     }),
-
   });
+  const sendRequest = async (method = "GET", data = {}) => {
+    if (method === "GET") {
+      return await CRUDMauHopDong(method);
+    }
+
+    if (data) {
+      return await CRUDMauHopDong(method, data);
+    }
+  };
   useEffect(() => {
     const richEditEl = document.getElementById("richEdit");
 
@@ -51,14 +60,11 @@ export default function RichEditComponent() {
             ) {
               a.removeItem(enumMember);
             }
-
           }
         }
       });
 
       rich.saveDocument(DocumentFormat.Rtf);
-
-
     } catch (error) {
       console.log("Rich ERROR", error);
     }
@@ -66,7 +72,7 @@ export default function RichEditComponent() {
     getApi(
       `users?join=chucvu%7C%7Cid,tenchucvu&join=chucdanh&join=thoihanhopdong&join=dmhopdong&join=dmtrinhdo&join=dmdantoc&join=dmquoctich&join=dmloaitinhluong&join=dmnganhang&join=dmdonvi&join=dmbophan&join=dmphongban&join=dmloaikhoi&join=tinhtranghonnhan&join=chuyenkhoa&join=nhanvienhopdongs&join=nccmnd&join=nccchn&join=phamvichungchihanhnghe&join=phamvihanhnghebosung&join=dienthianhvans&join=nhanvienbangcaps&join=nhanvienbangcaps.loaibangcap&join=nhanvienhopdongs.loaihopdong`
     ).then((data) => {
-      setEmployees(data?.data?.data);
+      setEmployees(data?.data);
     });
   }, []);
 
@@ -75,12 +81,11 @@ export default function RichEditComponent() {
   }, [employees]);
   useEffect(() => {
     try {
-      if(hopdong?.noidung){
+      if (hopdong?.noidung) {
         rich.openDocument(hopdong?.noidung, "DocumentName", DocumentFormat.Rtf);
-      }else{
-        rich.newDocument()
+      } else {
+        rich.newDocument();
       }
-    
 
       rich.events.saving.addHandler(function (s, e) {
         setnoidungsua(e.base64);
@@ -100,9 +105,11 @@ export default function RichEditComponent() {
     };
 
     if (hopdong) {
-      patchApi(`templatehd/${hopdong?.id}`, dataChanged).then(() => {
-        setName(noidungsua);
+      sendRequest("PATCH", {
+        key: hopdong?.id,
+        values: JSON.stringify(dataChanged),
       });
+      setName(noidungsua);
     }
   }, [noidungsua]);
 

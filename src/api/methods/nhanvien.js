@@ -2,11 +2,11 @@ import Api from './index'
 import ApiConstants from '../ApiConstants'
 
 
-export const CRUDNhanvien = async(method, id,  data = null) => {
+export const CRUDNhanvien = async(method,  data = null) => {
   switch(method){
     case "GET":
-        if(id){
-            return Api(ApiConstants.NHAN_VIEN_URL+`/${id}`+ApiConstants.PARAM_NHAN_VIEN , null, method, null);
+        if(data?.key){
+            return Api(ApiConstants.NHAN_VIEN_URL+'/'+data.key+ApiConstants.PARAM_NHAN_VIEN , null, method, null);
         }
       return Api(ApiConstants.NHAN_VIEN_URL+ApiConstants.PARAM_NHAN_VIEN , null, method, null);
       

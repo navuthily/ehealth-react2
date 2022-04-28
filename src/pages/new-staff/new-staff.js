@@ -15,8 +15,6 @@ import DataGrid, {
   Form,
   Lookup,
 } from "devextreme-react/data-grid";
-import { Item } from "devextreme-react/form";
-import DropDownBox from "devextreme-react/drop-down-box";
 import CheckBox from "devextreme-react/check-box";
 import "./new-staff.scss";
 import "devextreme/dist/css/dx.common.css";
@@ -26,8 +24,9 @@ import "whatwg-fetch";
 import "devextreme-intl";
 import Contract from "pages/contract/contract";
 import { useHistory } from "react-router-dom";
-import {ContractContext} from '../template-contract/Context'
-import { CRUDNhanvien } from 'api';
+import { getApi } from "../../callApi";
+import { CRUDNhanvien } from "api";
+import { Button } from "devextreme-react/button";
 function isNotEmpty(value) {
   return value !== undefined && value !== null && value !== "";
 }
@@ -36,44 +35,84 @@ function handleErrors(response) {
   return response;
 }
 
-const phongban = JSON.parse(localStorage.getItem("phongban"));
-function NewStaff() { 
+// const phongban = JSON.parse(localStorage.getItem("phongban"));
+function NewStaff() {
   let history = useHistory();
+  const [phongban, setPhongban] = useState(null);
+  const [donvi, setDonvi] = useState(null);
+  const [bophan, setBophan] = useState(null);
+  const [khoi, setKhoi] = useState(null);
+  const [trinhdo, setTrinhdo] = useState(null);
+  const [chucvu, setChucvu] = useState(null);
+  const [chucdanh, setChucdanh] = useState(null);
+  const [chuyenkhoa, setChuyenkhoa] = useState(null);
   const [autoExpandAll, setautoExpandAll] = useState(true);
-  const [focusedRowKey, setFocusRowKey] = useState(1);
-  const [focusedRowIndex, setFocusRowIndex] = useState(1);
+  const [focusedRowKey, setFocusRowKey] = useState(0);
+  const [focusedRowIndex, setFocusRowIndex] = useState(0);
   const [autoNavigateToFocusedRow, setautoNavigateToFocusedRow] =
     useState(true);
 
-    const [store, setStore] = useState(new CustomStore({
-      key: 'id',
+  const [store, setStore] = useState(
+    new CustomStore({
+      key: "id",
       load: () => sendRequest(),
-  
-      insert: (values) => sendRequest('POST', {
-        values: JSON.stringify(values)
-      }),
-  
-      update: (key, values) => sendRequest('PATCH', {
-        key,
-        values: JSON.stringify(values)
-      }),
-  
-      remove: (key) => sendRequest('DELETE', {
-        key,
-      })
-    }))
-  
-  
-    const sendRequest = async(method = 'GET', data = {}) => {
-      if (method === 'GET') {
-        return await CRUDNhanvien(method)
-      }
-  
-      if (data) {
-        // console.log(data);
-        return await CRUDNhanvien(method, data)
-      }
+
+      insert: (values) =>
+        sendRequest("POST", {
+          values: JSON.stringify(values),
+        }),
+
+      update: (key, values) => {
+        console.log("key", key, values);
+        sendRequest("PATCH", {
+          key,
+          values: JSON.stringify(values),
+        });
+      },
+      remove: (key) =>
+        sendRequest("DELETE", {
+          key,
+        }),
+    })
+  );
+
+  useEffect(() => {
+    getApi("dmphongban").then((data) => {
+      setPhongban(data?.data);
+    });
+    getApi("dmdonvi").then((data) => {
+      setDonvi(data?.data);
+    });
+    getApi("dmbophan").then((data) => {
+      setBophan(data?.data);
+    });
+    getApi("dmloaikhoi").then((data) => {
+      setKhoi(data?.data);
+    });
+    //
+    getApi("dmtrinhdo").then((data) => {
+      setTrinhdo(data?.data);
+    });
+    getApi("chucdanh").then((data) => {
+      setChucdanh(data?.data);
+    });
+    getApi("chucvu").then((data) => {
+      setChucvu(data?.data);
+    });
+    getApi("chuyenkhoa").then((data) => {
+      setChuyenkhoa(data?.data);
+    });
+  }, []);
+
+  const sendRequest = async (method = "GET", data = {}) => {
+    if (method === "GET") {
+      return await CRUDNhanvien(method);
     }
+
+    if (data) {
+      return await CRUDNhanvien(method, data);
+    }
+  };
   const onFocusedRowChanged = (e) => {
     setFocusRowIndex(e.component.option("focusedRowIndex"));
     setFocusRowKey(e.component.option("focusedRowKey"));
@@ -86,28 +125,49 @@ function NewStaff() {
     dataGrid.current.instance.expandAll();
   };
 
-  // const employeesStore = new ArrayStore({
-  //   data: JSON.parse(phongban),
-  //   key: "id",
-  // });
   function editEmployee() {
-    dataGrid.current.instance.editRow(focusedRowIndex);
+    dataGrid.current.instance.editRow(dataGrid.current.instance.getRowIndexByKey(focusedRowKey));
+
   }
   function onContentReady(e) {
     e.component.columnOption("command:edit", "visible", false);
   }
   function handleContract() {
     //setvisible = true
-    if(focusedRowKey){
+    if (focusedRowKey) {
       history.push(`/new-staff/${focusedRowKey}`);
     }
   }
   return (
     <div>
-      <button onClick={expandAllGroups}>Mở</button>
-      <button onClick={collapseAllGroups}>Đóng</button>
-      <button onClick={editEmployee}>Sửa</button>
-      <button onClick={handleContract}>Hợp đồng nhân viên</button>
+      <Button
+        width={80}
+        text="Mở"
+        type="normal"
+        stylingMode="contained"
+        onClick={expandAllGroups}
+      />
+      <Button
+        width={80}
+        text="Đóng"
+        type="normal"
+        stylingMode="contained"
+        onClick={collapseAllGroups}
+      />
+      <Button
+        width={80}
+        text="Sửa"
+        type="normal"
+        stylingMode="contained"
+        onClick={editEmployee}
+      />
+      <Button
+        width={80}
+        text="Hợp đồng"
+        type="normal"
+        stylingMode="contained"
+        onClick={handleContract}
+      />
       <DataGrid
         onContentReady={onContentReady}
         className="dgr-staff"
@@ -132,11 +192,6 @@ function NewStaff() {
           allowDeleting={true}
         >
           <Popup title="Nhân viên" showTitle={true} width={700} height={525} />
-          {/* <Form>
-            <Item dataField="tennhanvien" /> 
-            <Item dataField="holotNhanVien" dataType="string" caption="Họ lót"/>
-            <Item dataField="nickname" />
-          </Form> */}
         </Editing>
         <Column dataField="holotNhanVien" dataType="string" caption="Họ lót" />
         <Column
@@ -145,53 +200,34 @@ function NewStaff() {
           caption="Tên nhân viên"
         />
         <Column dataField="nickname" dataType="string" caption="Nick Name" />
-        <Column
-          dataField="dmphongban.tenphongban"
-          dataType="string"
-          caption="Phòng ban"
-          groupIndex={0}
-        />
-        <Column dataField="phongbanId" caption="Phong ban" width={125}>
+
+        <Column dataField="phongbanId" caption="Phòng ban" width={125} groupIndex={0}
+        >
           <Lookup
             dataSource={phongban}
             valueExpr="id"
             displayExpr="tenphongban"
+            
           />
         </Column>
 
-        {/* <Column
-          dataField="dmdonvi.tendonvi"
-          dataType="string"
-          caption="Tên đơn vị"
-        />
-        <Column
-          dataField="dmbophan.tenbophan"
-          dataType="string"
-          caption="Tên bộ phận"
-        />
-        <Column dataField="phongbanId" caption="Phongban" width={125}>
+        <Column dataField="donviId" caption="Đơn vị" width={125}>
+          <Lookup dataSource={donvi} valueExpr="id" displayExpr="tendonvi" />
+        </Column>
+
+        <Column dataField="bophanId" caption="Bộ phận" width={125}>
+          <Lookup dataSource={bophan} valueExpr="id" displayExpr="tenbophan" />
+        </Column>
+        <Column dataField="loaikhoiId" caption="Loại khối" width={125}>
+          <Lookup dataSource={khoi} valueExpr="id" displayExpr="tenloaikhoi" />
+        </Column>
+        <Column dataField="trinhdoId" caption="Trình độ" width={125}>
           <Lookup
-            dataSource={phongban}
+            dataSource={trinhdo}
             valueExpr="id"
-            displayExpr="tenphongban"
+            displayExpr="tentrinhdo"
           />
         </Column>
-        <Column
-          dataField="dmphongban.tenphongban"
-          dataType="string"
-          caption="Phòng ban"
-          groupIndex={0}
-        />
-        <Column
-          dataField="dmloaikhoi.tenloaikhoi"
-          dataType="string"
-          caption="Khối"
-        />
-        <Column
-          dataField="dmtrinhdo.tentrinhdo"
-          dataType="string"
-          caption="Trình độ"
-        /> */}
         <Column
           dataField="gioitinh"
           dataType="string"
@@ -199,21 +235,24 @@ function NewStaff() {
           cellRender={cellRenderGioiTinh}
         />
         <Column dataField="ngaysinh" dataType="date" caption="Ngày sinh" />
-        {/* <Column
-          dataField="chucvu.tenchucvu"
-          dataType="string"
-          caption="Chức vụ"
-        />
-        <Column
-          dataField="chucdanh.tenchucdanh"
-          dataType="string"
-          caption="Chuyên môn"
-        />
-        <Column
-          dataField="chuyenkhoa.tenchuyenkhoa"
-          dataType="string"
-          caption="Chuyên khoa"
-        /> */}
+
+        <Column dataField="chucvuId" caption="Chức vụ" width={125}>
+          <Lookup dataSource={chucvu} valueExpr="id" displayExpr="tenchucvu" />
+        </Column>
+        <Column dataField="chucdanhId" caption="Chức danh" width={125}>
+          <Lookup
+            dataSource={chucdanh}
+            valueExpr="id"
+            displayExpr="tenchucdanh"
+          />
+        </Column>
+        <Column dataField="chuyenkhoaId" caption="Chuyên khoa" width={125}>
+          <Lookup
+            dataSource={chuyenkhoa}
+            valueExpr="id"
+            displayExpr="tenchuyenkhoa"
+          />
+        </Column>
         <Column dataField="kinhnghiem" dataType="date" caption="Kinh nghiệm" />
         <Column dataField="ngayvaolam" dataType="date" caption="Ngày vào làm" />
         <Column
@@ -233,11 +272,6 @@ function NewStaff() {
           dataType="date"
           caption="Ngày kết thúc"
         />
-        {/* <Column
-          dataField="thoihanhopdong.tenthoihanhopdong"
-          dataType="string"
-          caption="Thời hạn hợp đồng"
-        /> */}
         <Column
           dataField="nhanvienbangcaps"
           width="200"
@@ -278,8 +312,8 @@ function NewStaff() {
           caption="Là bác sĩ"
           cellRender={cellRenderCheckBox}
         />
-        {/* <Column
-          dataField="isCongTacVienBenNgoai.tenchucvu"
+        <Column
+          dataField="isCongTacVienBenNgoai"
           dataType="string"
           caption="Là cộng tác viên"
           cellRender={cellRenderCheckBox}
@@ -288,7 +322,7 @@ function NewStaff() {
           dataField="tinhtranghonnhan.tinhtranghonnhan"
           dataType="string"
           caption="Gia đình"
-        /> */}
+        />
         <Column
           dataField="ngaynghiviec"
           dataType="string"
@@ -313,14 +347,13 @@ function NewStaff() {
         <GroupPanel visible={true} />
         <Summary>
           <GroupItem
-            column="Id"
+            column="id"
             summaryType="count"
             displayFormat="Số lượng:{0}"
           />
         </Summary>
       </DataGrid>
     </div>
-
   );
 }
 export default NewStaff;

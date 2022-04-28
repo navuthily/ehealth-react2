@@ -38,7 +38,6 @@ function TemplateContract() {
       return await CRUDMauHopDong(method);
     }
 
-    console.log(data, method, "data cods k");
     if (data) {
       return await CRUDMauHopDong(method, data);
     }
