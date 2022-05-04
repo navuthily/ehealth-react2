@@ -59,7 +59,6 @@ function Contract() {
     return new CustomStore({
       key: "id",
       load: () => sendRequest(),
-
       insert: (values) =>
         sendRequest("POST", {
           values: JSON.stringify({...values,nhanvienId:idNhanvien}),
@@ -150,7 +149,6 @@ function Contract() {
 
 const Grid = () => {
   const { store, onSelectionChanged, name } = useContext(ThemContext);
-
   return (
     <>
       <DataGrid
@@ -172,7 +170,7 @@ const Grid = () => {
           <Popup title="Hợp đồng" showTitle={true} width={700} height={525} />
         </Editing>
 
-        <Column dataField="loaihopdongId" caption="Loại hợp đồng">
+        <Column dataField="loaihopdongId" caption="Hợp đồng">
           <Lookup
             dataSource={loaihopdong}
             valueExpr="id"
@@ -191,7 +189,12 @@ const Grid = () => {
           caption="Ngày kết thúc"
           visible={false}
         />
-
+        <Column
+          dataField="ghichu"
+          dataType="string"
+          caption="Ghi chú"
+          visible={false}
+        />
         <Selection mode="single" />
 
         <Scrolling

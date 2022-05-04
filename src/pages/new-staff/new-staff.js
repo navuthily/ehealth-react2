@@ -135,7 +135,7 @@ function NewStaff() {
   function handleContract() {
     //setvisible = true
     if (focusedRowKey) {
-      history.push(`/new-staff/${focusedRowKey}`);
+      history.push(`/staff/${focusedRowKey}`);
     }
   }
   return (
@@ -172,7 +172,7 @@ function NewStaff() {
         onContentReady={onContentReady}
         className="dgr-staff"
         dataSource={store}
-        columnWidth={160}
+        columnWidth={100}
         width="100%"
         height="400"
         showBorders={true}
@@ -261,16 +261,17 @@ function NewStaff() {
           caption="Hợp đồng"
           cellRender={cellRenderHopDong}
         />
-        <Column dataField="id" dataType="number" caption="ID" />
         <Column
           dataField="ngaybatdauHopDong"
           dataType="date"
           caption="Ngày bắt đầu"
+          visible={false}
         />
         <Column
           dataField="ngayketthucHopDong"
           dataType="date"
           caption="Ngày kết thúc"
+          visible={false}
         />
         <Column
           dataField="nhanvienbangcaps"
@@ -289,6 +290,7 @@ function NewStaff() {
           dataField="homePhone"
           dataType="string"
           caption="Số điện thoại 2"
+          visible={false}
         />
         <Column dataField="cmnd" dataType="string" caption="CMND" />
         <Column dataField="email" dataType="string" caption="Emal" />
@@ -317,11 +319,6 @@ function NewStaff() {
           dataType="string"
           caption="Là cộng tác viên"
           cellRender={cellRenderCheckBox}
-        />
-        <Column
-          dataField="tinhtranghonnhan.tinhtranghonnhan"
-          dataType="string"
-          caption="Gia đình"
         />
         <Column
           dataField="ngaynghiviec"

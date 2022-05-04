@@ -4,31 +4,31 @@ import { NewStaffPage,  TemplateContractPage,
 const routes = [
  
   {
-    path: '/new-staff',
+    path: '/staff',
     component: NewStaffPage,
-    name: 'New Staff',
+    name: 'Nhân viên',
     children: [
       {
-        path: '/new-staff',
+        path: '/staff',
         component: NewStaffPage,
-        name: 'New Staff',
-        meta: { title: 'new-staff', icon: 'tab' }
+        name: 'Nhân viên',
+        meta: { title: 'Nhân viên', icon: 'tab' }
       }
     ]
   },  
   {
-    path: "/new-staff/:id",
+    path: "/staff/:id",
     component: ContractPage,
     name: "Nhân viên",
     children: [
       {
-        path: "/new-staff/:id",
+        path: "/staff/:id",
         component: ContractPage,
         name: "Nhân viên",
         meta: {
           icon: "tab",
           text: "hopdong",
-          path: "/new-staff/:id",
+          path: "/staff/:id",
         },
       },
     ],

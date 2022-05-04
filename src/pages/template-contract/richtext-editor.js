@@ -21,18 +21,40 @@ import DataSource from "devextreme/data/data_source";
 import ArrayStore from "devextreme/data/array_store";
 import { ThemContext } from "./Context";
 import { CRUDMauHopDong } from "api";
+import {test} from './data';
 var rich = RichEdit;
 export default function RichEditComponent() {
   const renderCount = useRef(0);
-  console.log(renderCount.current++, "rich text");
   const [noidungsua, setnoidungsua] = useState("");
   const { hopdong, setName, name, options } = useContext(ThemContext);
   const [employees, setEmployees] = useState([]);
+
+  function flattenObject(ob) {
+    var toReturn = {};
+
+    for (var i in ob) {
+        if (!ob.hasOwnProperty(i)) continue;
+
+        if ((typeof ob[i]) == 'object' && ob[i] !== null) {
+            var flatObject = flattenObject(ob[i]);
+            for (var x in flatObject) {
+                if (!flatObject.hasOwnProperty(x)) continue;
+
+                toReturn[x] = flatObject[x];
+            }
+        } else {
+            toReturn[i] = ob[i];
+        }
+    }
+    return toReturn;
+}
   const dataEmployee = new DataSource({
     store: new ArrayStore({
-      data: employees,
+      data:[ flattenObject(test)],
     }),
   });
+
+
   const sendRequest = async (method = "GET", data = {}) => {
     if (method === "GET") {
       return await CRUDMauHopDong(method);
@@ -70,7 +92,7 @@ export default function RichEditComponent() {
     }
 
     getApi(
-      `users?join=chucvu%7C%7Cid,tenchucvu&join=chucdanh&join=thoihanhopdong&join=dmhopdong&join=dmtrinhdo&join=dmdantoc&join=dmquoctich&join=dmloaitinhluong&join=dmnganhang&join=dmdonvi&join=dmbophan&join=dmphongban&join=dmloaikhoi&join=tinhtranghonnhan&join=chuyenkhoa&join=nhanvienhopdongs&join=nccmnd&join=nccchn&join=phamvichungchihanhnghe&join=phamvihanhnghebosung&join=dienthianhvans&join=nhanvienbangcaps&join=nhanvienbangcaps.loaibangcap&join=nhanvienhopdongs.loaihopdong`
+      `users?join=chucvu%7C%7Cid,tenchucvu&join=chucdanh&join=thoihanhopdong&join=dmhopdong&join=dmtrinhdo&join=dmdantoc&join=dmquoctich&join=dmloaitinhluong&join=dmnganhang&join=dmdonvi&join=dmbophan&join=dmphongban&join=dmloaikhoi&join=chuyenkhoa&join=nhanvienhopdongs&join=nccmnd&join=nccchn&join=phamvichungchihanhnghe&join=phamvihanhnghebosung&join=dienthianhvans&join=nhanvienbangcaps&join=nhanvienbangcaps.loaibangcap&join=nhanvienhopdongs.loaihopdong`
     ).then((data) => {
       setEmployees(data?.data);
     });

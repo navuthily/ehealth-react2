@@ -41,12 +41,10 @@ options.events.lostFocus = () => {};
 options.events.pointerDown = () => {};
 options.events.pointerUp = () => {};
 options.events.saving = (e, s) => {
-  console.log("saving ======>", e, s);
 
 
 };
 options.events.saved = (e) => {
-  console.log("Saved", e);
 };
 options.events.selectionChanged = () => {};
 options.events.customCommandExecuted = (s, e) => {

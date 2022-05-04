@@ -17,15 +17,15 @@ const loginUser = createSlice({
         
 
         },
-        // logout: (state, {payload}) => {
-        //     state.username = null;
-        //     state.nickname = null;
-        //     state.phongbanId = null;
-        //     state.holotNhanVien = null;
-        //     state.tennhanvien = null;
-        //     state.token = null
-        //     state.id =null;
-        // }
+        logout: (state, {payload}) => {
+            state.username = null;
+            state.nickname = null;
+            state.phongbanId = null;
+            state.holotNhanVien = null;
+            state.tennhanvien = null;
+            state.token = null
+            state.id =null;
+        }
     }
 
 })

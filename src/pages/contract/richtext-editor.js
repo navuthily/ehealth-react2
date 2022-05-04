@@ -5,31 +5,47 @@ import CustomStore from "devextreme/data/custom_store";
 import "devexpress-richedit/dist/dx.richedit.css";
 import "devextreme/dist/css/dx.common.css";
 import "devextreme/dist/css/dx.material.blue.light.compact.css";
-import {
-  create,
-  RichEdit,
-  DocumentFormat,
-
-} from "devexpress-richedit";
+import { create, RichEdit, DocumentFormat } from "devexpress-richedit";
 
 import options from "./options";
 import { CRUDNhanvien, CRUDHopdongNhanvien } from "api";
 import DataSource from "devextreme/data/data_source";
 import ArrayStore from "devextreme/data/array_store";
 var rich = RichEdit;
+function flattenObject(ob) {
+  var toReturn = {};
+
+  for (var i in ob) {
+      if (!ob.hasOwnProperty(i)) continue;
+
+      if ((typeof ob[i]) == 'object' && ob[i] !== null) {
+          var flatObject = flattenObject(ob[i]);
+          for (var x in flatObject) {
+              if (!flatObject.hasOwnProperty(x)) continue;
+
+              toReturn[x] = flatObject[x];
+          }
+      } else {
+          toReturn[i] = ob[i];
+      }
+  }
+  return toReturn;
+}
+
 export default function RichTextContract() {
   const { templateContract, idNhanvien, hopdong, setName } =
     useContext(ThemContext);
   const [employee, setEmployee] = useState([]);
   const [noidungsua, setnoidungsua] = useState(null);
+
   const dataEmployee = new DataSource({
     store: new ArrayStore({
-      data: [employee],
+      data: [flattenObject(employee)],
     }),
   });
   const sendRequest = async (method = "GET", data = {}) => {
     if (method === "GET") {
-      return await CRUDNhanvien(method, {key:idNhanvien});
+      return await CRUDNhanvien(method, { key: idNhanvien });
     }
 
     if (data) {
@@ -60,7 +76,6 @@ export default function RichTextContract() {
   }, []);
 
   useEffect(() => {
-    console.log("select temp...");
     try {
       rich.saveDocument(DocumentFormat.Rtf);
 
@@ -68,8 +83,8 @@ export default function RichTextContract() {
         rich.openDocument(
           templateContract?.noidung,
           "DocumentName",
-          DocumentFormat.Rtf
-          ,()=>{
+          DocumentFormat.Rtf,
+          () => {
             rich.mailMergeOptions.viewMergedData = false;
             rich.mailMergeOptions.viewMergedData = true;
           }
@@ -77,12 +92,7 @@ export default function RichTextContract() {
       } else {
         rich.newDocument();
       }
-      console.log(dataEmployee);
-
-
-
       rich.mailMergeOptions.setDataSource(dataEmployee);
-
 
     } catch (error) {
       console.log("Rich ERROR", error);

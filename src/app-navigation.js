@@ -19,12 +19,12 @@ export const navigation = [
         ],
       },
       {
-        text: "New staff",
-        path: "/new-staff",
+        text: "Nhân viên",
+        path: "/staff",
         children: [
           {
             // component: TasksPage,
-            meta: { text: " New Staff", icon: "folder", path: "/new-staff" },
+            meta: { text: " Nhân viên", icon: "folder", path: "/staff" },
           },
         ],
       },
