@@ -17,7 +17,7 @@ export default function Content() {
             component={component}
           />
         ))}
-        <Redirect to={'home'} />
+        <Redirect to={'nhan-vien'} />
       </Switch>
     </SideNavBarLayout>
   );

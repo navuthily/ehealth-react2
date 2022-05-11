@@ -5,11 +5,11 @@ import ApiConstants from '../ApiConstants'
 
 
 
-export async function signIn(userName, password) {
+export async function signIn(email, password) {
   try {
     // Send request
     const dataUser = await Api(ApiConstants.LOGIN, {
-            username: userName,
+            email: email,
             password: password,
           }, 'post', null)
 

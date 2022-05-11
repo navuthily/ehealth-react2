@@ -4,7 +4,7 @@ interface Foo {
   [key: string]: Object;
 }
 
-const initialState : Foo =  {'Nhân viên':[{'meta' : { text: 'Nhân viên', icon: 'Nhân viên', path: '/staff' }}]};
+const initialState : Foo =  {'Nhân viên':[{'meta' : { text: 'Nhân viên',  path: '/nhan-vien' }}]};
 
 const counterSlice = createSlice({
   name: 'counter',

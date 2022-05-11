@@ -7587,7 +7587,7 @@
   font-size: 14px;
   font-weight: 700;
   line-height: 1.2;
-  text-transform: uppercase;
+  text-transform:capitalize;
   right: 24px;
   left: 24px;
 }
@@ -7743,7 +7743,7 @@
 .dx-calendar-body thead {
   font-size: 10px;
   font-weight: 700;
-  text-transform: uppercase;
+  text-transform: capitalize;
   line-height: 1.2;
 }
 .dx-calendar-body thead tr {
@@ -9215,10 +9215,10 @@
 .dx-toolbar .dx-toolbar-before:empty {
   padding: 0;
 }
-.dx-toolbar .dx-toolbar-items-container {
+/* .dx-toolbar .dx-toolbar-items-container {
   height: 26px;
   overflow: visible;
-}
+} */
 .dx-toolbar .dx-toolbar-menu-container {
   padding: 0 0 0 5px;
 }
@@ -9522,10 +9522,10 @@
 .dx-popup-title.dx-toolbar .dx-toolbar-before:empty {
   padding: 0;
 }
-.dx-popup-title.dx-toolbar .dx-toolbar-items-container {
+/* .dx-popup-title.dx-toolbar .dx-toolbar-items-container {
   height: 26px;
   overflow: visible;
-}
+} */
 .dx-popup-title.dx-toolbar .dx-toolbar-menu-container {
   padding: 0 0 0 5px;
 }
@@ -9611,10 +9611,10 @@
 .dx-popup-bottom.dx-toolbar .dx-toolbar-before:empty {
   padding: 0;
 }
-.dx-popup-bottom.dx-toolbar .dx-toolbar-items-container {
+/* .dx-popup-bottom.dx-toolbar .dx-toolbar-items-container {
   height: 26px;
   overflow: visible;
-}
+} */
 .dx-popup-bottom.dx-toolbar .dx-toolbar-menu-container {
   padding: 0 0 0 5px;
 }
@@ -9659,10 +9659,10 @@
 .dx-device-mobile .dx-popup-bottom.dx-toolbar .dx-toolbar-before:empty {
   padding: 0;
 }
-.dx-device-mobile .dx-popup-bottom.dx-toolbar .dx-toolbar-items-container {
+/* .dx-device-mobile .dx-popup-bottom.dx-toolbar .dx-toolbar-items-container {
   height: 26px;
   overflow: visible;
-}
+} */
 .dx-device-mobile .dx-popup-bottom.dx-toolbar .dx-toolbar-menu-container {
   padding: 0 0 0 5px;
 }
@@ -11915,6 +11915,12 @@
   cursor: move;
   vertical-align: middle;
   padding: 0;
+}
+.dx-tab-content, .dx-tab-text {
+  vertical-align: middle;
+  text-transform: capitalize !important;
+  line-height: 24px;
+  font-weight: 500;
 }
 .dx-sortable-dragging .dx-datagrid-rowsview .dx-data-row .dx-command-drag {
   cursor: pointer;
@@ -23148,4 +23154,13 @@ input.dx-hidden {
   left: 0;
   background: rgba(0,0,0,.01);
   opacity: .01;
+}
+
+.side-navigation-menu .menu-container .dx-treeview .dx-treeview-node{
+  font-size: 14px !important;
+}
+.dx-button-text{
+  line-height: 17px;
+
+  text-transform: capitalize  !important
 }

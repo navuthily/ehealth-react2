@@ -95,6 +95,6 @@ export default function LoginForm() {
   );
 }
 
-const emailEditorOptions = { stylingMode: 'filled', placeholder: 'Tên đăng nhập', mode: 'username' };
+const emailEditorOptions = { stylingMode: 'filled', placeholder: 'Tên đăng nhập', mode: 'email' };
 const passwordEditorOptions = { stylingMode: 'filled', placeholder: 'Mật khẩu', mode: 'password' };
 // const rememberMeEditorOptions = { text: 'Remember me', elementAttr: { class: 'form-text' } };

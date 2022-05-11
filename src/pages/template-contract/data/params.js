@@ -83,7 +83,7 @@ const apiParams = [
     id: '7894673d-a2e0-49b1-bb6e-0c4c81125055',
     key: 'param3',
     tenantId: 'e5248129-c936-428c-8e44-00f854c50f98',
-    name: 'username',
+    name: 'email',
     value: 'Na',
     // value: '',
     createdByUserId: '00000000-0000-0000-0000-000000000000',

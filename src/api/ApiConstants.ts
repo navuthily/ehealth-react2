@@ -12,9 +12,19 @@ const ApiConstants = {
   NHAN_VIEN_URL: "users",
   PARAM_NHAN_VIEN:"?join=chucvu||id,tenchucvu&join=chucdanh&join=thoihanhopdong&join=dmhopdong&join=dmtrinhdo&join=dmdantoc&join=dmquoctich&join=dmloaitinhluong&join=dmnganhang&join=dmdonvi&join=dmbophan&join=dmphongban&join=dmloaikhoi&join=chuyenkhoa&join=nhanvienhopdongs&join=nccmnd&join=nccchn&join=phamvichungchihanhnghe&join=phamvihanhnghebosung&join=dienthianhvans&join=nhanvienbangcaps&join=nhanvienbangcaps.loaibangcap&join=nhanvienhopdongs.loaihopdong",
   MAU_HOP_DONG_URL: "templatehd",
+  LOAI_HOP_DONG_URL: "dmloaihopdong",
   GET_HOP_DONG_NHAN_VIEN:"nhanvienhopdong?join=loaihopdong||tenloaihopdong",
   HOP_DONG_NHAN_VIEN:"nhanvienhopdong",
-  FILTER_HOP_DONG_NHAN_VIEN:"&filter=nhanvienId||eq||"
+  FILTER_HOP_DONG_NHAN_VIEN:"&filter=nhanvienId||eq||",
+  CHUC_DANH_URL: "chucdanh",
+  CHUC_VU_URL:"chucvu",
+  LOAI_TINH_LUONG_URL:"dmloaitinhluong",
+  BO_PHAN_URL:"dmbophan",
+  CHUYEN_KHOA_URL:"chuyenkhoa",
+  DON_VI_URL:"dmdonvi",
+  TRINH_DO_URL:"dmtrinhdo",
+  LOAI_KHOI_URL:"dmloaikhoi",
+  PHONG_BAN_URL:"dmphongban",
 }
 
 export default ApiConstants

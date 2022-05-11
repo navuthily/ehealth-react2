@@ -32,7 +32,6 @@ export const test =
     "isCongTacVienBenNgoai": true,
     "allowLogin": true,
     "nickname": "string",
-    "username": "string",
     "password": "string",
     "ngaycapCMND": "2022-05-03T11:42:01.101Z",
     "nhomLSPId": 0,
