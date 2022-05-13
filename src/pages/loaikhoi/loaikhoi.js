@@ -15,6 +15,7 @@ import React, {
   useState,
 } from "react";
 import { CRUDLoaikhoi } from "api";
+import '../style.scss'
 function LoaiKhoi() {
   const [id, setId] = useState(0);
   const [hopdong, sethopdong] = useState(null);
@@ -74,7 +75,7 @@ function LoaiKhoi() {
     setId,
   };
   return (
-      <div className="main">
+      <div className="main-2">
      <DataGrid
       className={`dgr-contract`}
       dataSource={store}

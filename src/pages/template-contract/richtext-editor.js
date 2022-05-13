@@ -13,8 +13,7 @@ import {
   MailMergeTabItemId,
 } from "devexpress-richedit";
 import ApplyButton from "./Button";
-import documentAsBase64 from "./data/docs";
-import { getApi, patchApi } from "../../callApi";
+import { getApi} from "../../callApi";
 import "./template-contract.scss";
 import "./richtext-editor.scss";
 import DataSource from "devextreme/data/data_source";

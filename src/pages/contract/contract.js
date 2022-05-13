@@ -23,19 +23,18 @@ import options from "../template-contract/data/options";
 import { CRUDHopdongNhanvien, CRUDMauHopDong } from "api";
 import { ThemContext } from "../template-contract/Context";
 import SelectBox from "devextreme-react/select-box";
+import api from "api/methods";
 import "./contract.scss"
-const loaihopdong = JSON.parse(localStorage.getItem("loaihopdong"));
 function Contract() {
   const [templateContract, setTemplateContract] = useState(null);
   const [hopdong, sethopdong] = useState(null);
   const [name, setName] = useState(null);
+  const [loaihopdong,setLoaihopdong]= useState([])
+
   useEffect(() => {
-    fetch("http://localhost:7000/dmloaihopdong")
-      .then((response) => response.json())
-      .then((data) => {
-        localStorage.setItem("loaihopdong", JSON.stringify(data));
-      })
-      .catch((err) => console.log(err));
+    api("dmloaihopdong", null, "GET", null).then((data) => {
+      setLoaihopdong(data);
+    });
   }, []);
   function isNotEmpty(value) {
     return value !== undefined && value !== null && value !== "";
@@ -121,7 +120,7 @@ function Contract() {
     setName,
     options,
     templateContract,
-    idNhanvien,
+    idNhanvien,loaihopdong
   };
   function handleSelectChanged(e) {
     setTemplateContract(e.selectedItem);
@@ -148,7 +147,7 @@ function Contract() {
 }
 
 const Grid = () => {
-  const { store, onSelectionChanged, name } = useContext(ThemContext);
+  const { store, onSelectionChanged, name,loaihopdong } = useContext(ThemContext);
   return (
     <>
       <DataGrid

@@ -74,7 +74,7 @@ function TypeContract() {
     setId,
   };
   return (
-      <div className="main">
+      <div className="main-2">
      <DataGrid
       className={`dgr-contract`}
       dataSource={store}

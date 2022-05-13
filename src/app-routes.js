@@ -7,7 +7,7 @@ import {
   ContractPage,
   PositionStaffPage,
   LoaitinhluongPage,
-  LoaikhoiStaffPage, TrinhdoStaffPage,BophanStaffPage,PhongbanStaffPage,DonviStaffPage, ChuyenkhoaStaffPage
+  LoaikhoiStaffPage, TrinhdoStaffPage,BophanStaffPage,PhongbanStaffPage, ChuyenkhoaStaffPage
 
 } from "pages/index";
 const routes = [
@@ -137,19 +137,7 @@ const routes = [
     ],
   },//PhongbanStaffPage,DonviStaffPage, ChuyenkhoaStaffPage
 
-  {
-    path: "/bo-phan",
-    component: BophanStaffPage,
-    name: "Bộ phận",
-    children: [
-      {
-        path: "/bo-phan",
-        component: BophanStaffPage,
-        name: "Bộ phận",
-        meta: { title: "bo-phan", icon: "tab" },
-      },
-    ],
-  },
+
   {
     path: "/phong-ban",
     component: PhongbanStaffPage,
@@ -164,15 +152,15 @@ const routes = [
     ],
   },
   {
-    path: "/don-vi",
-    component: DonviStaffPage,
-    name: "Đơn vị",
+    path: "/bo-phan",
+    component: BophanStaffPage,
+    name: "Bộ phận",
     children: [
       {
-        path: "/don-vi",
-        component: DonviStaffPage,
-        name: "Đơn vị",
-        meta: { title: "don-vi", icon: "tab" },
+        path: "/bo-phan",
+        component: BophanStaffPage,
+        name: "Bộ phận",
+        meta: { title: "bo-phan", icon: "tab" },
       },
     ],
   },

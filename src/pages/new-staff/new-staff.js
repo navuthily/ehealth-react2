@@ -14,6 +14,9 @@ import DataGrid, {
   Paging,
   Form,
   Lookup,
+  ColumnFixing,
+  RequiredRule,
+  EmailRule,
 } from "devextreme-react/data-grid";
 import "./new-staff.scss";
 import api from "api/methods";
@@ -37,8 +40,6 @@ function handleErrors(response) {
 // const phongban = JSON.parse(localStorage.getItem("phongban"));
 function NewStaff() {
   let history = useHistory();
-  const [phongban, setPhongban] = useState(null);
-  const [donvi, setDonvi] = useState(null);
   const [bophan, setBophan] = useState(null);
   const [khoi, setKhoi] = useState(null);
   const [trinhdo, setTrinhdo] = useState(null);
@@ -51,7 +52,8 @@ function NewStaff() {
   const [focusedRowIndex, setFocusRowIndex] = useState(0);
   const [autoNavigateToFocusedRow, setautoNavigateToFocusedRow] =
     useState(true);
-
+  const [boxData, setBoxData] = useState([]);
+  const [roleData, setRoleData] = useState([]);
   const [store, setStore] = useState(
     new CustomStore({
       key: "id",
@@ -63,7 +65,6 @@ function NewStaff() {
         }),
 
       update: (key, values) => {
-        console.log("key", key, values);
         sendRequest("PATCH", {
           key,
           values: JSON.stringify(values),
@@ -77,36 +78,32 @@ function NewStaff() {
   );
 
   useEffect(() => {
+    setBoxData([
+      { gt: true, text: "Nữ" },
+      { gt: false, text: "Nam" },
+    ]);
+    setRoleData([{ role: "ADMIN" }, { role: "USER" }]);
+    const get = "GET";
 
-const get='GET';
-    
-    api("dmphongban",null,get,null).then((data) => {
-      console.log(data,'hihi/')
-      setPhongban(data);
-    });
-    api("dmdonvi",null,get,null).then((data) => {
-      setDonvi(data);
-    });
-    api("dmbophan",null,get,null).then((data) => {
+    api("dmbophan", null, get, null).then((data) => {
       setBophan(data);
     });
-    api("dmloaikhoi",null,get,null).then((data) => {
+    api("dmloaikhoi", null, get, null).then((data) => {
       setKhoi(data);
     });
-    //
-    api("dmtrinhdo",null,get,null).then((data) => {
+    api("dmtrinhdo", null, get, null).then((data) => {
       setTrinhdo(data);
     });
-    api("chucdanh",null,get,null).then((data) => {
+    api("chucdanh", null, get, null).then((data) => {
       setChucdanh(data);
     });
-    api("chucvu",null,get,null).then((data) => {
+    api("chucvu", null, get, null).then((data) => {
       setChucvu(data);
     });
-    api("chuyenkhoa",null,get,null).then((data) => {
+    api("chuyenkhoa", null, get, null).then((data) => {
       setChuyenkhoa(data);
     });
-    api("dmloaitinhluong",null,get,null).then((data) => {
+    api("dmloaitinhluong", null, get, null).then((data) => {
       setLoaitinhluong(data);
     });
   }, []);
@@ -132,24 +129,26 @@ const get='GET';
     dataGrid.current.instance.expandAll();
   };
 
-  function editEmployee() {
-    dataGrid.current.instance.editRow(
-      dataGrid.current.instance.getRowIndexByKey(focusedRowKey)
-    );
-  }
   function onContentReady(e) {
-    e.component.columnOption("command:edit", "visible", false);
+    e.component.columnOption("command:edit", "visible", true);
+    e.component.columnOption("command:edit", "fixed", true);
+  }
+  function onEditorPreparing(e){
+    if (!e?.row?.isNewRow && e.caption==="Email" ) {  
+      e.editorOptions.readOnly= true;  
+  } else{
+    e.editorOptions.readOnly= false;  
+  }
+  
   }
   function handleContract() {
-    //setvisible = true
     if (focusedRowKey) {
       history.push(`/nhan-vien/${focusedRowKey}`);
     }
   }
   return (
-    <div>
+    <div className="main-3">
       <Button
-        // width={80}
         text="Mở"
         type="normal"
         stylingMode="contained"
@@ -163,13 +162,6 @@ const get='GET';
         onClick={collapseAllGroups}
       />
       <Button
-        // width={80}
-        text="Sửa"
-        type="normal"
-        stylingMode="contained"
-        onClick={editEmployee}
-      />
-      <Button
         // width={100}
         text="Hợp đồng"
         type="normal"
@@ -178,6 +170,7 @@ const get='GET';
       />
       <DataGrid
         onContentReady={onContentReady}
+        onEditorPreparing={onEditorPreparing}
         className="dgr-staff"
         dataSource={store}
         columnWidth={100}
@@ -198,23 +191,30 @@ const get='GET';
           allowUpdating={true}
           allowAdding={true}
           allowDeleting={true}
+        
+          
         >
           <Popup title="Nhân viên" showTitle={true} width={700} height={525} />
         </Editing>
-        <Column dataField="holotNhanVien" dataType="string" caption="Họ lót" />
+        <ColumnFixing enabled={true} />
+
+        <Column
+          dataField="holotNhanVien"
+          dataType="string"
+          caption="Họ lót"
+          fixed={true}
+        />
         <Column
           dataField="tennhanvien"
           dataType="string"
           caption="Tên nhân viên"
+          fixed={true}
         />
         <Column dataField="nickname" dataType="string" caption="Nick Name" />
         <Column dataField="mobile" dataType="string" caption="Số điện thoại" />
-        <Column
-          dataField="gioitinh"
-          dataType="string"
-          caption="Giới tính"
-          cellRender={cellRenderGioiTinh}
-        />
+        <Column dataField="gioitinh" caption="Giới tính">
+          <Lookup dataSource={boxData} displayExpr="text" valueExpr="gt" />
+        </Column>
         <Column
           dataField="quoctich"
           width="200"
@@ -222,61 +222,91 @@ const get='GET';
           dataType="string"
           visible={false}
         />
-        <Column dataField="cmnd" dataType="string" caption="CMND"  visible={false}/>
+        <Column
+          dataField="cmnd"
+          dataType="string"
+          caption="CMND"
+          visible={false}
+        />
         <Column
           dataField="ngaycapcmnd"
           dataType="date"
-          caption="Ngày cấp CMND" visible={false}
+          caption="Ngày cấp CMND"
+          visible={false}
         />
         <Column
           dataField="noicapcmnd"
           dataType="string"
-          caption="Nơi cấp CMND" visible={false}
+          caption="Nơi cấp CMND"
+          visible={false}
         />
-        <Column dataField="hochieu" dataType="string" caption="Hộ chiếu"  visible={false}/>
+        <Column
+          dataField="hochieu"
+          dataType="string"
+          caption="Hộ chiếu"
+          visible={false}
+        />
         <Column
           dataField="diachi"
           width="200"
           caption="Địa chỉ"
           dataType="string"
         />
-        <Column dataField="email" dataType="string" caption="Emal"  allowEditing={false}/>
+        <Column
+          dataField="email"
+          dataType="string"
+          caption="Email"
+          // allowEditing={false}
+        >
+          <RequiredRule />
+          <EmailRule />
+        </Column>
         <Column dataField="ngaysinh" dataType="date" caption="Ngày sinh" />
-        <Column dataField="ngayvaolam" dataType="date" caption="Ngày vào làm" visible={false} />
+        <Column
+          dataField="ngayvaolam"
+          dataType="date"
+          caption="Ngày vào làm"
+          visible={false}
+        />
         <Column
           dataField="ngaynghiviec"
-          dataType="string"
-          caption="Ngày nghỉ việc" visible={false}
+          dataType="date"
+          caption="Ngày nghỉ việc"
+          visible={false}
         />
         <Column
           dataField="masothuecanhan"
           dataType="string"
-          caption="Mã số thuế cá nhân" visible={false}
-          
+          caption="Mã số thuế cá nhân"
+          visible={false}
         />
-        <Column dataField="sobaohiem" dataType="string" caption="Số bảo hiểm"  visible={false}/>
         <Column
-          dataField="phongbanId"
+          dataField="sobaohiem"
+          dataType="string"
+          caption="Số bảo hiểm"
+          visible={false}
+        />
+
+        <Column
+          dataField="dmbophan.phongban.tenphongban"
           caption="Phòng ban"
           width={125}
           groupIndex={0}
+          allowEditing={false}
+        ></Column>
+        <Column
+          dataField="trinhdoId"
+          caption="Trình độ"
+          width={125}
+          visible={false}
         >
-          <Lookup
-            dataSource={phongban}
-            valueExpr="id"
-            displayExpr="tenphongban"
-          />
-        </Column>
-        <Column dataField="trinhdoId" caption="Trình độ" width={125}>
           <Lookup
             dataSource={trinhdo}
             valueExpr="id"
-            displayExpr="tentrinhdo" visible={false}
+            displayExpr="tentrinhdo"
           />
         </Column>
-        <Column dataField="donviId" caption="Đơn vị" width={125}>
-          <Lookup dataSource={donvi} valueExpr="id" displayExpr="tendonvi" />
-        </Column>
+
         <Column dataField="bophanId" caption="Bộ phận" width={125}>
           <Lookup dataSource={bophan} valueExpr="id" displayExpr="tenbophan" />
         </Column>
@@ -290,9 +320,11 @@ const get='GET';
             displayExpr="tenchucdanh"
           />
         </Column>
-
-
-        <Column dataField="loaitinhluongId" caption="Loại tính lương" width={125}>
+        <Column
+          dataField="loaitinhluongId"
+          caption="Loại tính lương"
+          width={125}
+        >
           <Lookup
             dataSource={loaitinhluong}
             valueExpr="id"
@@ -309,12 +341,19 @@ const get='GET';
         <Column dataField="loaikhoiId" caption="Loại khối" width={125}>
           <Lookup dataSource={khoi} valueExpr="id" displayExpr="tenloaikhoi" />
         </Column>
- 
+        <Column
+          dataField="role"
+          dataType="string"
+          caption="Role"
+          visible={false}
+        >
+          <Lookup dataSource={roleData} valueExpr="role" displayExpr="role" />
+        </Column>
         <Selection mode="single" />
         <Scrolling
           rowRenderingMode="virtual"
           mode="virtual"
-          columnRenderingMode="virtual"
+          columnRenderingMode="infinite"
         />
         <FilterRow visible={true} />
         <Grouping autoExpandAll={autoExpandAll} />
@@ -331,8 +370,3 @@ const get='GET';
   );
 }
 export default NewStaff;
-
-
-function cellRenderGioiTinh(data) {
-  return <div>{data.value === true ? "nam" : "nữ"}</div>;
-}

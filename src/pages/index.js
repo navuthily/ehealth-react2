@@ -12,5 +12,4 @@ export {default as LoaikhoiStaffPage} from './loaikhoi/loaikhoi';
 export {default as TrinhdoStaffPage} from './trinhdo/trinhdo';
 export {default as BophanStaffPage} from './bophan/bophan';
 export {default as PhongbanStaffPage} from './phongban/phongban';
-export {default as DonviStaffPage} from './donvi/donvi';
 export {default as ChuyenkhoaStaffPage} from './chuyenkhoa/chuyenkhoa';

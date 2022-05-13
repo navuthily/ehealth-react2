@@ -1,17 +1,17 @@
-import { Sortable } from 'devextreme-react/sortable';
-import TabPanel from 'devextreme-react/tab-panel';
-import 'devextreme/data/odata/store';
-import { HomePage, ProfilePage, TasksPage } from 'pages';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
-import { useLocation } from 'react-router-dom';
-import { onTabDrop, removeMenuRouter } from 'store/module/tagViews';
-import './header.scss';
+import { Sortable } from "devextreme-react/sortable";
+import TabPanel from "devextreme-react/tab-panel";
+import "devextreme/data/odata/store";
+import { HomePage, ProfilePage, TasksPage } from "pages";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import { useLocation } from "react-router-dom";
+import { onTabDrop, removeMenuRouter } from "store/module/tagViews";
+import "./header.scss";
 
 export const fetchUser = (dis, state) => async (dispatch, getState) => {
   return dis(onTabDrop(state));
-}
+};
 
 function HeaderTwo() {
   const location = useLocation();
@@ -35,12 +35,12 @@ function HeaderTwo() {
   });
 
   useEffect(() => {
-    isArrayHtml.map(index => {
+    isArrayHtml.map((index) => {
       if (index?.path === pathname) {
         setSelectedItem(index);
       }
-    })
-  }, [pathname, isArrayHtml])
+    });
+  }, [pathname, isArrayHtml]);
 
   const closeHandler = React.useCallback((data) => {
     return () => closeButtonHandler(data);
@@ -50,10 +50,10 @@ function HeaderTwo() {
     return (
       <React.Fragment>
         <div>
-          <span>
-            {data?.text}
-          </span>
-          {isArrayHtml.length >= 1 && <i className="dx-icon dx-icon-close" onClick={closeHandler(data)} />}
+          <span>{data?.text}</span>
+          {isArrayHtml.length >= 1 && (
+            <i className="dx-icon dx-icon-close" onClick={closeHandler(data)} />
+          )}
         </div>
       </React.Fragment>
     );
@@ -90,6 +90,8 @@ function HeaderTwo() {
         onReorder={onTabDrop}
       >
         <TabPanel
+        className="tab-panel2"
+          width={"100%"}
           dataSource={isArrayHtml}
           height={"100%"}
           itemTitleRender={renderTitle}
@@ -98,7 +100,9 @@ function HeaderTwo() {
           selectedItem={selectedItem}
           repaintChangesOnly={true}
           onSelectionChanged={onSelectionChanged}
-          itemComponent={() => { return <> </> }}
+          itemComponent={() => {
+            return <> </>;
+          }}
         />
         {/* <Tabs
             dataSource={isArrayHtml}

@@ -23164,3 +23164,6 @@ input.dx-hidden {
 
   text-transform: capitalize  !important
 }
+.dx-popup-content{
+  padding: 20px !important;
+}

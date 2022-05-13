@@ -113,20 +113,6 @@ export const navigation = [
         ],
       },
       {
-        text: "Bộ phận",
-        path: "/bo-phan",
-        children: [
-          {
-            // component: TasksPage,
-            meta: {
-              text: "Bộ phận",
-              icon: "folder",
-              path: "/bo-phan",
-            },
-          },
-        ],//PhongbanStaffPage,DonviStaffPage, ChuyenkhoaStaffPage
-      },
-      {
         text: "Phòng ban",
         path: "/phong-ban",
         children: [
@@ -141,19 +127,21 @@ export const navigation = [
         ],
       },
       {
-        text: "Đơn vị",
-        path: "/don-vi",
+        text: "Bộ phận",
+        path: "/bo-phan",
         children: [
           {
             // component: TasksPage,
             meta: {
-              text: "Đơn vị",
+              text: "Bộ phận",
               icon: "folder",
-              path: "/don-vi",
+              path: "/bo-phan",
             },
           },
-        ],
+        ],//PhongbanStaffPage,DonviStaffPage, ChuyenkhoaStaffPage
       },
+
+
       {
         text: "Chuyên khoa",
         path: "/chuyen-khoa",

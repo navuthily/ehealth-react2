@@ -1,273 +1,548 @@
 export const test =
+
 {
-    "donviId": 0,
-    "bophanId": 0,
+  "holotNhanVien": "string",
+  "tennhanvien": "string",
+  "nickname": "string",
+  "mobile": "string",
+  "hinhNhanVien": "string",
+  "gioitinh": true,
+  "quoctich": "string",
+  "cmnd": "string",
+  "ngaycapcmnd": "2022-05-12T04:36:40.748Z",
+  "noicapcmnd": "string",
+  "hochieu": "string",
+  "diachi": "string",
+  "email": "string",
+  "ngaysinh": "2022-05-12T04:36:40.748Z",
+  "ngayvaolam": "2022-05-12T04:36:40.748Z",
+  "ngaynghiviec": "2022-05-12T04:36:40.748Z",
+  "masothuecanhan": "string",
+  "sobaohiem": "string",
+  "hinhchuky": "string",
+  "allowLogin": true,
+  "password": "string",
+  "role": "string",
+  "trinhdoId": 0,
+  "bophanId": 0,
+  "chucvuId": 0,
+  "chucdanhId": 0,
+  "loaitinhluongId": 0,
+  "chuyenkhoaId": 0,
+  "loaikhoiId": 0,
+  "createdBy": 0,
+  "updatedBy": 0,
+  "chucvu": {
+    "id": 0,
+    "tenchucvu": "string",
+    "createdAt": "2022-05-12T04:36:40.748Z",
+    "updatedAt": "2022-05-12T04:36:40.748Z",
+    "createdBy": 0,
+    "updatedBy": 0,
+    "nguoitao": "string",
+    "nguoisua": "string",
+    "nhanviens": [
+      "string"
+    ]
+  },
+  "chucdanh": {
+    "id": 0,
+    "tenchucdanh": "string",
+    "createdAt": "2022-05-12T04:36:40.748Z",
+    "updatedAt": "2022-05-12T04:36:40.748Z",
+    "createdBy": 0,
+    "updatedBy": 0,
+    "nguoitao": "string",
+    "nguoisua": "string",
+    "nhanviens": [
+      "string"
+    ]
+  },
+  "dmtrinhdo": {
+    "id": 0,
+    "tentrinhdo": "string",
+    "createdAt": "2022-05-12T04:36:40.748Z",
+    "updatedAt": "2022-05-12T04:36:40.748Z",
+    "createdBy": 0,
+    "updatedBy": 0,
+    "nguoitao": "string",
+    "nguoisua": "string",
+    "nhanviens": [
+      "string"
+    ]
+  },
+  "dmloaitinhluong": {
+    "id": 0,
+    "tenloaitinhluong": "string",
+    "createdAt": "2022-05-12T04:36:40.748Z",
+    "updatedAt": "2022-05-12T04:36:40.748Z",
+    "createdBy": 0,
+    "updatedBy": 0,
+    "nguoitao": "string",
+    "nguoisua": "string",
+    "nhanviens": [
+      "string"
+    ]
+  },
+  "dmbophan": {
+    "id": 0,
+    "tenbophan": "string",
     "phongbanId": 0,
-    "holotNhanVien": "string",
-    "tennhanvien": "string",
-    "hinhNhanVien": "string",
-    "gioitinh": true,
-    "dantoc": "string",
-    "quoctich": "string",
-    "cmnd": "string",
-    "hochieu": "string",
-    "chucvuId": 0,
-    "chucdanhId": 0,
-    "diachi": "string",
-    "mobile": "string",
-    "homePhone": "string",
-    "email": "string",
-    "ngaysinh": "2022-05-03T11:42:01.101Z",
-    "ngayvaolam": "2022-05-03T11:42:01.101Z",
-    "trinhdoId": 0,
-    "loaitinhluongId": 0,
-    "taikhoanNganHang": "string",
-    "nganhangId": 0,
-    "masothuecanhan": "string",
-    "sobaohiem": "string",
-    "ghichu": "string",
-    "danghiviec": true,
-    "hinhchuky": "string",
-    "isDoctor": true,
-    "isCongTacVienBenNgoai": true,
-    "allowLogin": true,
-    "nickname": "string",
-    "password": "string",
-    "ngaycapCMND": "2022-05-03T11:42:01.101Z",
-    "nhomLSPId": 0,
-    "isCoHuu": true,
-    "passwordProtect": "string",
-    "kinhnghiem": "2022-05-03T11:42:01.101Z",
-    "coTinhLuongKeToan": true,
-    "hopdongId": 0,
-    "ngaybatdauHopDong": "2022-05-03T11:42:01.101Z",
-    "ngayketthucHopDong": "2022-05-03T11:42:01.101Z",
-    "chuyenkhoaId": 0,
-    "noicapCMND": "string",
-    "chungchihanhnghe": true,
-    "ngaynghiviec": "2022-05-03T11:42:01.101Z",
-    "isLichBacSy": true,
-    "soChungChiHanhNghe": "string",
-    "noicapChungChiHanhNghe": "string",
-    "ngaycapChungChiHanhNghe": "2022-05-03T11:42:01.101Z",
-    "phamvihoatdongChungChiHanhNghe": 0,
-    "phamviHanhNgheBoSung": 0,
-    "chucvukhacId": 0,
-    "accessToken": "string",
-    "expireToken": "string",
-    "loaikhoiId": 0,
-    "ghichuReview": "string",
-    "ghichuPhongVan": "string",
-    "isLuongLSP": true,
-    "role": "string",
-    "chucvu": {
-      "id": 0,
-      "tenchucvu": "string",
-      "nhanviens": [
-        "string"
-      ]
-    },
-    "chucdanh": {
-      "id": 0,
-      "tenchucdanh": "string",
-      "nhanviens": [
-        "string"
-      ]
-    },
-    "dmtrinhdo": {
-      "id": 0,
-      "tentrinhdo": "string",
-      "nhanviens": [
-        "string"
-      ]
-    },
-    "dmloaitinhluong": {
-      "id": 0,
-      "tenloaitinhluong": "string",
-      "nhanviens": [
-        "string"
-      ]
-    },
-    "dmnganhang": {
-      "id": 0,
-      "tennganhang": "string",
-      "nhanviens": [
-        "string"
-      ]
-    },
-    "dmdonvi": {
-      "id": 0,
-      "tendonvi": "string",
-      "nhanviens": [
-        "string"
-      ]
-    },
-    "dmbophan": {
-      "id": 0,
-      "tenbophan": "string",
-      "nhanviens": [
-        "string"
-      ]
-    },
-    "dmphongban": {
+    "createdAt": "2022-05-12T04:36:40.748Z",
+    "updatedAt": "2022-05-12T04:36:40.748Z",
+    "createdBy": 0,
+    "updatedBy": 0,
+    "nguoitao": "string",
+    "nguoisua": "string",
+    "nhanviens": [
+      "string"
+    ],
+    "phongban": {
       "id": 0,
       "tenphongban": "string",
-      "nhanviens": [
+      "createdAt": "2022-05-12T04:36:40.748Z",
+      "updatedAt": "2022-05-12T04:36:40.748Z",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "nguoitao": "string",
+      "nguoisua": "string",
+      "bophans": [
         "string"
       ]
-    },
-    "dmloaikhoi": {
+    }
+  },
+  "dmloaikhoi": {
+    "id": 0,
+    "tenloaikhoi": "string",
+    "createdAt": "2022-05-12T04:36:40.748Z",
+    "updatedAt": "2022-05-12T04:36:40.748Z",
+    "createdBy": 0,
+    "updatedBy": 0,
+    "nguoitao": "string",
+    "nguoisua": "string",
+    "nhanviens": [
+      "string"
+    ]
+  },
+  "chuyenkhoa": {
+    "id": 0,
+    "tenchuyenkhoa": "string",
+    "createdAt": "2022-05-12T04:36:40.748Z",
+    "updatedAt": "2022-05-12T04:36:40.748Z",
+    "createdBy": 0,
+    "updatedBy": 0,
+    "nguoitao": "string",
+    "nguoisua": "string",
+    "nhanviens": [
+      "string"
+    ]
+  },
+  "nhanvienhopdongs": [
+    {
       "id": 0,
-      "tenloaikhoi": "string",
+      "nhanvienId": 0,
+      "loaihopdongId": 0,
+      "noidunghopdong": "string",
+      "ngaybatdau": "2022-05-12T04:36:40.748Z",
+      "ghichu": "string",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "createdAt": "2022-05-12T04:36:40.748Z",
+      "updatedAt": "2022-05-12T04:36:40.748Z",
+      "nguoitao": "string",
+      "nguoisua": "string",
+      "nhanvien": "string",
+      "loaihopdong": {
+        "id": 0,
+        "tenloaihopdong": "string",
+        "createdAt": "2022-05-12T04:36:40.748Z",
+        "updatedAt": "2022-05-12T04:36:40.748Z",
+        "nguoitao": "string",
+        "nguoisua": "string",
+        "nhanvienhopdongs": [
+          "string"
+        ]
+      }
+    }
+  ],
+  "temps": [
+    {
+      "id": 0,
+      "noidung": "string",
+      "loaitemplate": "string",
+      "createdAt": "2022-05-12T04:36:40.748Z",
+      "updatedAt": "2022-05-12T04:36:40.748Z",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "nguoitao": "string",
+      "nguoisua": "string"
+    }
+  ],
+  "temp": [
+    {
+      "id": 0,
+      "noidung": "string",
+      "loaitemplate": "string",
+      "createdAt": "2022-05-12T04:36:40.748Z",
+      "updatedAt": "2022-05-12T04:36:40.748Z",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "nguoitao": "string",
+      "nguoisua": "string"
+    }
+  ],
+  "nhanvienhd": [
+    {
+      "id": 0,
+      "nhanvienId": 0,
+      "loaihopdongId": 0,
+      "noidunghopdong": "string",
+      "ngaybatdau": "2022-05-12T04:36:40.748Z",
+      "ghichu": "string",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "createdAt": "2022-05-12T04:36:40.748Z",
+      "updatedAt": "2022-05-12T04:36:40.748Z",
+      "nguoitao": "string",
+      "nguoisua": "string",
+      "nhanvien": "string",
+      "loaihopdong": {
+        "id": 0,
+        "tenloaihopdong": "string",
+        "createdAt": "2022-05-12T04:36:40.748Z",
+        "updatedAt": "2022-05-12T04:36:40.748Z",
+        "nguoitao": "string",
+        "nguoisua": "string",
+        "nhanvienhopdongs": [
+          "string"
+        ]
+      }
+    }
+  ],
+  "nhanvienhopdong": [
+    {
+      "id": 0,
+      "nhanvienId": 0,
+      "loaihopdongId": 0,
+      "noidunghopdong": "string",
+      "ngaybatdau": "2022-05-12T04:36:40.748Z",
+      "ghichu": "string",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "createdAt": "2022-05-12T04:36:40.748Z",
+      "updatedAt": "2022-05-12T04:36:40.748Z",
+      "nguoitao": "string",
+      "nguoisua": "string",
+      "nhanvien": "string",
+      "loaihopdong": {
+        "id": 0,
+        "tenloaihopdong": "string",
+        "createdAt": "2022-05-12T04:36:40.748Z",
+        "updatedAt": "2022-05-12T04:36:40.748Z",
+        "nguoitao": "string",
+        "nguoisua": "string",
+        "nhanvienhopdongs": [
+          "string"
+        ]
+      }
+    }
+  ],
+  "nguoitaochucvu": [
+    {
+      "id": 0,
+      "tenchucvu": "string",
+      "createdAt": "2022-05-12T04:36:40.748Z",
+      "updatedAt": "2022-05-12T04:36:40.748Z",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "nguoitao": "string",
+      "nguoisua": "string",
       "nhanviens": [
         "string"
       ]
-    },
-    "chuyenkhoa": {
+    }
+  ],
+  "nguoisuachucvu": [
+    {
+      "id": 0,
+      "tenchucvu": "string",
+      "createdAt": "2022-05-12T04:36:40.748Z",
+      "updatedAt": "2022-05-12T04:36:40.748Z",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "nguoitao": "string",
+      "nguoisua": "string",
+      "nhanviens": [
+        "string"
+      ]
+    }
+  ],
+  "nguoitaochucdanh": [
+    {
+      "id": 0,
+      "tenchucdanh": "string",
+      "createdAt": "2022-05-12T04:36:40.748Z",
+      "updatedAt": "2022-05-12T04:36:40.748Z",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "nguoitao": "string",
+      "nguoisua": "string",
+      "nhanviens": [
+        "string"
+      ]
+    }
+  ],
+  "nguoisuachucdanh": [
+    {
+      "id": 0,
+      "tenchucdanh": "string",
+      "createdAt": "2022-05-12T04:36:40.748Z",
+      "updatedAt": "2022-05-12T04:36:40.748Z",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "nguoitao": "string",
+      "nguoisua": "string",
+      "nhanviens": [
+        "string"
+      ]
+    }
+  ],
+  "nguoitaochuyenkhoa": [
+    {
       "id": 0,
       "tenchuyenkhoa": "string",
+      "createdAt": "2022-05-12T04:36:40.748Z",
+      "updatedAt": "2022-05-12T04:36:40.748Z",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "nguoitao": "string",
+      "nguoisua": "string",
       "nhanviens": [
         "string"
       ]
-    },
-    "nhanvienhopdongs": [
-      {
-        "id": 0,
-        "nhanvienId": 0,
-        "loaihopdongId": 0,
-        "noidunghopdong": "string",
-        "ngaybatdau": "2022-05-03T11:42:01.101Z",
-        "ngayketthuc": "2022-05-03T11:42:01.101Z",
-        "ghichu": "string",
-        "createdBy": 0,
-        "updatedBy": 0,
-        "createdAt": "2022-05-03T11:42:01.101Z",
-        "updatedAt": "2022-05-03T11:42:01.101Z",
-        "nguoitao": "string",
-        "nguoisua": "string",
-        "nhanvien": "string",
-        "loaihopdong": {
-          "id": 0,
-          "tenloaihopdong": "string",
-          "nhanvienhopdongs": [
-            "string"
-          ]
-        }
-      }
-    ],
-    "nhanvienbangcaps": [
-      {
-        "id": 0,
-        "idnhanvien": 0,
-        "idloaibangcap": 0,
-        "nhanvien": "string",
-        "loaibangcap": {
-          "id": 0,
-          "tenloaibangcap": "string",
-          "nhanvienbangcaps": [
-            "string"
-          ]
-        }
-      }
-    ],
-    "phamvichungchihanhnghe": {
+    }
+  ],
+  "nguoisuachuyenkhoa": [
+    {
       "id": 0,
-      "tenphamvichungchihanhnghe": "string",
+      "tenchuyenkhoa": "string",
+      "createdAt": "2022-05-12T04:36:40.748Z",
+      "updatedAt": "2022-05-12T04:36:40.748Z",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "nguoitao": "string",
+      "nguoisua": "string",
+      "nhanviens": [
+        "string"
+      ]
+    }
+  ],
+  "nguoitaobophan": [
+    {
+      "id": 0,
+      "tenbophan": "string",
+      "phongbanId": 0,
+      "createdAt": "2022-05-12T04:36:40.748Z",
+      "updatedAt": "2022-05-12T04:36:40.748Z",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "nguoitao": "string",
+      "nguoisua": "string",
       "nhanviens": [
         "string"
       ],
-      "nhanvien2s": [
-        "string"
-      ]
-    },
-    "phamvihanhnghebosung": {
+      "phongban": {
+        "id": 0,
+        "tenphongban": "string",
+        "createdAt": "2022-05-12T04:36:40.748Z",
+        "updatedAt": "2022-05-12T04:36:40.748Z",
+        "createdBy": 0,
+        "updatedBy": 0,
+        "nguoitao": "string",
+        "nguoisua": "string",
+        "bophans": [
+          "string"
+        ]
+      }
+    }
+  ],
+  "nguoisuabophan": [
+    {
       "id": 0,
-      "tenphamvichungchihanhnghe": "string",
+      "tenbophan": "string",
+      "phongbanId": 0,
+      "createdAt": "2022-05-12T04:36:40.748Z",
+      "updatedAt": "2022-05-12T04:36:40.748Z",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "nguoitao": "string",
+      "nguoisua": "string",
       "nhanviens": [
         "string"
       ],
-      "nhanvien2s": [
+      "phongban": {
+        "id": 0,
+        "tenphongban": "string",
+        "createdAt": "2022-05-12T04:36:40.748Z",
+        "updatedAt": "2022-05-12T04:36:40.749Z",
+        "createdBy": 0,
+        "updatedBy": 0,
+        "nguoitao": "string",
+        "nguoisua": "string",
+        "bophans": [
+          "string"
+        ]
+      }
+    }
+  ],
+  "nguoitaoloaihopdong": [
+    {
+      "id": 0,
+      "tenloaihopdong": "string",
+      "createdAt": "2022-05-12T04:36:40.749Z",
+      "updatedAt": "2022-05-12T04:36:40.749Z",
+      "nguoitao": "string",
+      "nguoisua": "string",
+      "nhanvienhopdongs": [
         "string"
       ]
-    },
-    "temps": [
-      {
-        "id": 0,
-        "noidung": "string",
-        "loaitemplate": "string",
-        "createdBy": 0,
-        "updatedBy": 0,
-        "createdAt": "2022-05-03T11:42:01.101Z",
-        "updatedAt": "2022-05-03T11:42:01.101Z",
-        "nguoitao": "string",
-        "nguoisua": "string"
-      }
-    ],
-    "temp": [
-      {
-        "id": 0,
-        "noidung": "string",
-        "loaitemplate": "string",
-        "createdBy": 0,
-        "updatedBy": 0,
-        "createdAt": "2022-05-03T11:42:01.101Z",
-        "updatedAt": "2022-05-03T11:42:01.101Z",
-        "nguoitao": "string",
-        "nguoisua": "string"
-      }
-    ],
-    "nhanvienhd": [
-      {
-        "id": 0,
-        "nhanvienId": 0,
-        "loaihopdongId": 0,
-        "noidunghopdong": "string",
-        "ngaybatdau": "2022-05-03T11:42:01.101Z",
-        "ngayketthuc": "2022-05-03T11:42:01.101Z",
-        "ghichu": "string",
-        "createdBy": 0,
-        "updatedBy": 0,
-        "createdAt": "2022-05-03T11:42:01.101Z",
-        "updatedAt": "2022-05-03T11:42:01.101Z",
-        "nguoitao": "string",
-        "nguoisua": "string",
-        "nhanvien": "string",
-        "loaihopdong": {
-          "id": 0,
-          "tenloaihopdong": "string",
-          "nhanvienhopdongs": [
-            "string"
-          ]
-        }
-      }
-    ],
-    "nhanvienhopdong": [
-      {
-        "id": 0,
-        "nhanvienId": 0,
-        "loaihopdongId": 0,
-        "noidunghopdong": "string",
-        "ngaybatdau": "2022-05-03T11:42:01.101Z",
-        "ngayketthuc": "2022-05-03T11:42:01.101Z",
-        "ghichu": "string",
-        "createdBy": 0,
-        "updatedBy": 0,
-        "createdAt": "2022-05-03T11:42:01.101Z",
-        "updatedAt": "2022-05-03T11:42:01.101Z",
-        "nguoitao": "string",
-        "nguoisua": "string",
-        "nhanvien": "string",
-        "loaihopdong": {
-          "id": 0,
-          "tenloaihopdong": "string",
-          "nhanvienhopdongs": [
-            "string"
-          ]
-        }
-      }
-    ],
-    "id": 0,
-    "createdAt": "2022-05-03T11:42:01.101Z",
-    "updatedAt": "2022-05-03T11:42:01.101Z",
-    "dtoClass": {}
-  }
+    }
+  ],
+  "nguoisualoaihopdong": [
+    {
+      "id": 0,
+      "tenloaihopdong": "string",
+      "createdAt": "2022-05-12T04:36:40.749Z",
+      "updatedAt": "2022-05-12T04:36:40.749Z",
+      "nguoitao": "string",
+      "nguoisua": "string",
+      "nhanvienhopdongs": [
+        "string"
+      ]
+    }
+  ],
+  "nguoitaoloaikhoi": [
+    {
+      "id": 0,
+      "tenloaikhoi": "string",
+      "createdAt": "2022-05-12T04:36:40.749Z",
+      "updatedAt": "2022-05-12T04:36:40.749Z",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "nguoitao": "string",
+      "nguoisua": "string",
+      "nhanviens": [
+        "string"
+      ]
+    }
+  ],
+  "nguoisualoaikhoi": [
+    {
+      "id": 0,
+      "tenloaikhoi": "string",
+      "createdAt": "2022-05-12T04:36:40.749Z",
+      "updatedAt": "2022-05-12T04:36:40.749Z",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "nguoitao": "string",
+      "nguoisua": "string",
+      "nhanviens": [
+        "string"
+      ]
+    }
+  ],
+  "nguoitaoloaitinhluong": [
+    {
+      "id": 0,
+      "tenloaitinhluong": "string",
+      "createdAt": "2022-05-12T04:36:40.749Z",
+      "updatedAt": "2022-05-12T04:36:40.749Z",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "nguoitao": "string",
+      "nguoisua": "string",
+      "nhanviens": [
+        "string"
+      ]
+    }
+  ],
+  "nguoisualoaitinhluong": [
+    {
+      "id": 0,
+      "tenloaitinhluong": "string",
+      "createdAt": "2022-05-12T04:36:40.749Z",
+      "updatedAt": "2022-05-12T04:36:40.749Z",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "nguoitao": "string",
+      "nguoisua": "string",
+      "nhanviens": [
+        "string"
+      ]
+    }
+  ],
+  "nguoitaophongban": [
+    {
+      "id": 0,
+      "tenphongban": "string",
+      "createdAt": "2022-05-12T04:36:40.749Z",
+      "updatedAt": "2022-05-12T04:36:40.749Z",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "nguoitao": "string",
+      "nguoisua": "string",
+      "bophans": [
+        "string"
+      ]
+    }
+  ],
+  "nguoisuaphongban": [
+    {
+      "id": 0,
+      "tenphongban": "string",
+      "createdAt": "2022-05-12T04:36:40.749Z",
+      "updatedAt": "2022-05-12T04:36:40.749Z",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "nguoitao": "string",
+      "nguoisua": "string",
+      "bophans": [
+        "string"
+      ]
+    }
+  ],
+  "nguoitaotrinhdo": [
+    {
+      "id": 0,
+      "tentrinhdo": "string",
+      "createdAt": "2022-05-12T04:36:40.749Z",
+      "updatedAt": "2022-05-12T04:36:40.749Z",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "nguoitao": "string",
+      "nguoisua": "string",
+      "nhanviens": [
+        "string"
+      ]
+    }
+  ],
+  "nguoisuatrinhdo": [
+    {
+      "id": 0,
+      "tentrinhdo": "string",
+      "createdAt": "2022-05-12T04:36:40.749Z",
+      "updatedAt": "2022-05-12T04:36:40.749Z",
+      "createdBy": 0,
+      "updatedBy": 0,
+      "nguoitao": "string",
+      "nguoisua": "string",
+      "nhanviens": [
+        "string"
+      ]
+    }
+  ],
+  "id": 0,
+  "createdAt": "2022-05-12T04:36:40.749Z",
+  "updatedAt": "2022-05-12T04:36:40.749Z",
+  "dtoClass": {}
+}

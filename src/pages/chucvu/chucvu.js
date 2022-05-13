@@ -15,6 +15,7 @@ import React, {
   useState,
 } from "react";
 import { CRUDChucvu } from "api";
+import '../style.scss'
 function Position() {
   const [id, setId] = useState(0);
   const [hopdong, sethopdong] = useState(null);
@@ -74,7 +75,7 @@ function Position() {
     setId,
   };
   return (
-      <div className="main">
+      <div className="main-2">
      <DataGrid
       className={`dgr-contract`}
       dataSource={store}
