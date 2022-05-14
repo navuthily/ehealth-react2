@@ -10,7 +10,7 @@ const ApiConstants = {
   THOI_GIAN_CHO_PHEP_DAT_LICH_KHAM: "thoigiandatlich",
   // GET_ALL_NHAN_VIEN: 'users',
   NHAN_VIEN_URL: "users",
-  PARAM_NHAN_VIEN:"?join=chucvu||id,tenchucvu&join=chucdanh&join=thoihanhopdong&join=dmhopdong&join=dmtrinhdo&join=dmdantoc&join=dmquoctich&join=dmloaitinhluong&join=dmnganhang&join=dmbophan&join=dmphongban&join=dmloaikhoi&join=chuyenkhoa&join=nhanvienhopdongs&join=nccmnd&join=nccchn&join=phamvichungchihanhnghe&join=phamvihanhnghebosung&join=dienthianhvans&join=nhanvienbangcaps&join=nhanvienbangcaps.loaibangcap&join=nhanvienhopdongs.loaihopdong&join=dmbophan.phongban",
+  PARAM_NHAN_VIEN:"?join=chucvu||id,tenchucvu&join=chucdanh&join=thoihanhopdong&join=dmhopdong&join=dmtrinhdo&join=dmdantoc&join=dmquoctich&join=dmloaitinhluong&join=dmnganhang&join=dmbophan&join=dmphongban&join=dmloaikhoi&join=chuyenkhoa&join=nhanvienhopdongs&join=nccmnd&join=nccchn&join=phamvichungchihanhnghe&join=phamvihanhnghebosung&join=dienthianhvans&join=nhanvienbangcaps&join=nhanvienbangcaps.loaibangcap&join=nhanvienhopdongs.loaihopdong&join=dmbophan.phongban&join=chuyenkhoa.phongban",
   MAU_HOP_DONG_URL: "templatehd",
   LOAI_HOP_DONG_URL: "dmloaihopdong",
   GET_HOP_DONG_NHAN_VIEN:"nhanvienhopdong?join=loaihopdong||tenloaihopdong",

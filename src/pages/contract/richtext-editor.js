@@ -6,7 +6,7 @@ import "devexpress-richedit/dist/dx.richedit.css";
 import "devextreme/dist/css/dx.common.css";
 import "devextreme/dist/css/dx.material.blue.light.compact.css";
 import { create, RichEdit, DocumentFormat } from "devexpress-richedit";
-
+import { Button } from "devextreme-react";
 import options from "./options";
 import { CRUDNhanvien, CRUDHopdongNhanvien } from "api";
 import DataSource from "devextreme/data/data_source";
@@ -133,9 +133,13 @@ export default function RichTextContract() {
       console.log("Rich ERROR", error);
     }
   }, [hopdong]);
-
+  const handleSave = (e) => {
+    rich.saveDocument(DocumentFormat.Rtf);
+    e.handled = false;
+  };
   return (
     <>
+     < Button icon="save" text="Lưu" onClick={handleSave} type="success" className='btnStyle'/>
       <div id="richEdit"></div>
     </>
   );

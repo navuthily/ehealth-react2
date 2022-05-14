@@ -37,8 +37,7 @@ function handleErrors(response) {
   return response;
 }
 
-// const phongban = JSON.parse(localStorage.getItem("phongban"));
-function NewStaff() {
+function NewStaff() { 
   let history = useHistory();
   const [bophan, setBophan] = useState(null);
   const [khoi, setKhoi] = useState(null);
@@ -133,13 +132,10 @@ function NewStaff() {
     e.component.columnOption("command:edit", "visible", true);
     e.component.columnOption("command:edit", "fixed", true);
   }
-  function onEditorPreparing(e){
-    if (!e?.row?.isNewRow && e.caption==="Email" ) {  
-      e.editorOptions.readOnly= true;  
-  } else{
-    e.editorOptions.readOnly= false;  
-  }
-  
+  function onEditorPreparing(e) {
+    if (!e?.row?.isNewRow && e.caption === "Email") {
+      e.editorOptions.readOnly = true;
+    } 
   }
   function handleContract() {
     if (focusedRowKey) {
@@ -148,26 +144,26 @@ function NewStaff() {
   }
   return (
     <div className="main-3">
-      <Button
-        text="Mở"
-        type="normal"
-        stylingMode="contained"
-        onClick={expandAllGroups}
-      />
-      <Button
-        // width={80}
-        text="Đóng"
-        type="normal"
-        stylingMode="contained"
-        onClick={collapseAllGroups}
-      />
-      <Button
-        // width={100}
-        text="Hợp đồng"
-        type="normal"
-        stylingMode="contained"
-        onClick={handleContract}
-      />
+      <div className="group-button">
+        <Button
+          className="btnStyle"
+          icon="expand"
+          type="success"
+          onClick={expandAllGroups}
+        />
+        <Button
+          className="btnStyle"
+          icon="collapse"
+          type="success"
+          onClick={collapseAllGroups}
+        />
+        <Button
+          className="btnStyle"
+          icon="file"
+          type="success"
+          onClick={handleContract}
+        />
+      </div>
       <DataGrid
         onContentReady={onContentReady}
         onEditorPreparing={onEditorPreparing}
@@ -191,8 +187,6 @@ function NewStaff() {
           allowUpdating={true}
           allowAdding={true}
           allowDeleting={true}
-        
-          
         >
           <Popup title="Nhân viên" showTitle={true} width={700} height={525} />
         </Editing>
@@ -256,7 +250,6 @@ function NewStaff() {
           dataField="email"
           dataType="string"
           caption="Email"
-          // allowEditing={false}
         >
           <RequiredRule />
           <EmailRule />
@@ -286,7 +279,6 @@ function NewStaff() {
           caption="Số bảo hiểm"
           visible={false}
         />
-
         <Column
           dataField="dmbophan.phongban.tenphongban"
           caption="Phòng ban"
@@ -294,6 +286,7 @@ function NewStaff() {
           groupIndex={0}
           allowEditing={false}
         ></Column>
+
         <Column
           dataField="trinhdoId"
           caption="Trình độ"
@@ -309,6 +302,9 @@ function NewStaff() {
 
         <Column dataField="bophanId" caption="Bộ phận" width={125}>
           <Lookup dataSource={bophan} valueExpr="id" displayExpr="tenbophan" />
+        </Column>
+        <Column dataField="chuyenkhoaId" caption="Chuyên khoa" width={125}>
+          <Lookup dataSource={chuyenkhoa} valueExpr="id" displayExpr="tenchuyenkhoa" />
         </Column>
         <Column dataField="chucvuId" caption="Chức vụ" width={125}>
           <Lookup dataSource={chucvu} valueExpr="id" displayExpr="tenchucvu" />

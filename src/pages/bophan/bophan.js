@@ -91,6 +91,7 @@ function BoPhan() {
         allowColumnReordering={true}
         focusedRowEnabled={true}
         keyExpr="id"
+        height="400"
         onSelectionChanged={onSelectionChanged}
       >
         <Editing

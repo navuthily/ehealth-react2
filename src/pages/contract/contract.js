@@ -153,7 +153,7 @@ const Grid = () => {
       <DataGrid
         className={`dgr-contract`}
         dataSource={store}
-        height="200"
+        height="300"
         showBorders={true}
         allowColumnReordering={true}
         focusedRowEnabled={true}

@@ -104,6 +104,7 @@ const Grid = () => {
       allowColumnReordering={true}
       focusedRowEnabled={true}
       keyExpr="id"
+      height={300}
       onSelectionChanged={onSelectionChanged}
     >
       <Editing
