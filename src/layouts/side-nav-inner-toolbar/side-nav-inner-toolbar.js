@@ -1,7 +1,7 @@
 import { ScrollView } from 'devextreme-react';
 import Button from 'devextreme-react/button';
 import { Template } from 'devextreme-react/core/template';
-import Drawer from 'devextreme-react/drawer';
+import {Drawer} from 'devextreme-react/drawer';
 import Toolbar, { Item } from 'devextreme-react/toolbar';
 import React, { useCallback, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -12,6 +12,7 @@ import HeaderTwo from '../../components/headertwo/header';
 import { useScreenSize } from '../../utils/media-query';
 import { useMenuPatch } from '../../utils/patches';
 import './side-nav-inner-toolbar.scss';
+import "devextreme/dist/css/dx.light.css";
 export default function SideNavInnerToolbar({ title, children }) {
   const dispatch = useDispatch();
   const scrollViewRef = useRef();

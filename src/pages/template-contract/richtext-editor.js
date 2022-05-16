@@ -2,8 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 
 // import "devextreme/dist/css/dx.dark.css";
 import "devexpress-richedit/dist/dx.richedit.css";
-import "devextreme/dist/css/dx.common.css";
-import "devextreme/dist/css/dx.material.blue.light.compact.css";
+
+import "devextreme/dist/css/dx.light.compact.css";
 import {
   create,
   RichEdit,

@@ -20,12 +20,9 @@ import DataGrid, {
 } from "devextreme-react/data-grid";
 import "./new-staff.scss";
 import api from "api/methods";
-import "devextreme/dist/css/dx.common.css";
-import "devextreme/dist/css/dx.material.blue.light.compact.css";
 import CustomStore from "devextreme/data/custom_store";
 import "whatwg-fetch";
 import "devextreme-intl";
-import Contract from "pages/contract/contract";
 import { useHistory } from "react-router-dom";
 import { CRUDNhanvien } from "api";
 import { Button } from "devextreme-react/button";

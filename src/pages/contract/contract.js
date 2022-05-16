@@ -8,8 +8,8 @@ import DataGrid, {
   Lookup,
 } from "devextreme-react/data-grid";
 import CustomStore from "devextreme/data/custom_store";
-import "devextreme/dist/css/dx.common.css";
-import "devextreme/dist/css/dx.material.blue.light.compact.css";
+import "devextreme/dist/css/dx.light.css";
+// import "devextreme/dist/css/dx.light.compact.css";
 import { useParams } from "react-router-dom";
 import React, {
   useCallback,

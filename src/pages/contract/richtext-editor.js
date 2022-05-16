@@ -3,8 +3,8 @@ import { ThemContext } from "../template-contract/Context";
 import CustomStore from "devextreme/data/custom_store";
 // import "devextreme/dist/css/dx.dark.css";
 import "devexpress-richedit/dist/dx.richedit.css";
-import "devextreme/dist/css/dx.common.css";
-import "devextreme/dist/css/dx.material.blue.light.compact.css";
+
+import "devextreme/dist/css/dx.light.compact.css";
 import { create, RichEdit, DocumentFormat } from "devexpress-richedit";
 import { Button } from "devextreme-react";
 import options from "./options";

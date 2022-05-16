@@ -1,5 +1,5 @@
 import LoadPanel from "devextreme-react/load-panel";
-import "devextreme/dist/css/dx.common.css";
+
 import React, { useEffect } from "react";
 import { AliveScope } from "react-activation";
 import { HashRouter as Router } from "react-router-dom";
@@ -8,14 +8,12 @@ import { AuthProvider, useAuth } from "./contexts/auth";
 import { NavigationProvider } from "./contexts/navigation";
 // import './dx-styles.scss';
 // import './themes/generated/theme.additional.css';
-import "./themes/generated/theme.base.css";
 import UnauthenticatedContent from "./UnauthenticatedContent";
 import { useScreenSizeClass } from "./utils/media-query";
 
 import viMessages from "devextreme/localization/messages/vi.json";
 
 import { locale, loadMessages, formatMessage } from "devextreme/localization";
-import dxDateBox from "devextreme/ui/date_box";
 import dataGrid from "devextreme/ui/data_grid";
 
 function App() {

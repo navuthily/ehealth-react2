@@ -1,5 +1,5 @@
 import { Template } from 'devextreme-react/core/template';
-import Drawer from 'devextreme-react/drawer';
+import {Drawer} from 'devextreme-react/drawer';
 import ScrollView from 'devextreme-react/scroll-view';
 import React, { useCallback, useRef, useState } from 'react';
 import { useHistory } from 'react-router';

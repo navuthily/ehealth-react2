@@ -8,8 +8,8 @@ import DataGrid, {
 } from "devextreme-react/data-grid";
 import api from "api/methods";
 import CustomStore from "devextreme/data/custom_store";
-import "devextreme/dist/css/dx.common.css";
-import "devextreme/dist/css/dx.material.blue.light.compact.css";
+
+import "devextreme/dist/css/dx.light.compact.css";
 import React, { useCallback, useMemo, useState,useEffect } from "react";
 import { CRUDBophan } from "api";
 import '../style.scss'
