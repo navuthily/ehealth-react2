@@ -8,14 +8,14 @@ export default function Header({ menuToggleEnabled, title, toggleMenu }) {
   return (
     <header className={'header-component'}>
       <Toolbar className={'header-toolbar'}>
-        <Item
+        {/* <Item
           visible={menuToggleEnabled}
           location={'before'}
           widget={'dxButton'}
           cssClass={'menu-button'}
         >
           <Button icon="menu" stylingMode="text" onClick={toggleMenu} />
-        </Item>
+        </Item> */}
         <Item
           location={'before'}
           cssClass={'header-title'}

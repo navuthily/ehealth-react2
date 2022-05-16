@@ -8,6 +8,7 @@ import { AuthProvider, useAuth } from "./contexts/auth";
 import { NavigationProvider } from "./contexts/navigation";
 // import './dx-styles.scss';
 // import './themes/generated/theme.additional.css';
+import "devextreme/dist/css/dx.light.compact.css";
 import UnauthenticatedContent from "./UnauthenticatedContent";
 import { useScreenSizeClass } from "./utils/media-query";
 

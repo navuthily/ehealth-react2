@@ -9,7 +9,6 @@
 .layout-body {
   flex: 1;
   min-height: 0;
-  background-color: white;
 }
 
 .content {
@@ -25,12 +24,12 @@
     color: $base-text-color;
   }
 
-  // .screen-x-small & {
-  //   padding-left: 20px;
-  // }
+  .screen-x-small & {
+    padding-left: 20px;
+  }
     
-  // .dx-theme-generic & {
-  //   padding-top: 10px;
-  //   padding-bottom: 10px;
-  // }
+  .dx-theme-generic & {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 }

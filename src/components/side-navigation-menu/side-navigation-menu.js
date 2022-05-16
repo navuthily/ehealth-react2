@@ -5,7 +5,7 @@ import { navigation } from '../../app-navigation';
 import { useNavigation } from '../../contexts/navigation';
 import { useScreenSize } from '../../utils/media-query';
 import './side-navigation-menu.scss';
-import "devextreme/dist/css/dx.light.css";
+
 
 export default function SideNavigationMenu(props) {
   const {
