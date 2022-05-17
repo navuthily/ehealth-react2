@@ -194,12 +194,14 @@ function NewStaff() {
           dataType="string"
           caption="Họ lót"
           fixed={true}
+          width="120"
         />
         <Column
           dataField="tennhanvien"
           dataType="string"
           caption="Tên nhân viên"
           fixed={true}
+          width="110"
         />
         <Column dataField="nickname" dataType="string" caption="Nick Name" />
         <Column dataField="mobile" dataType="string" caption="Số điện thoại" />
@@ -245,13 +247,14 @@ function NewStaff() {
         />
         <Column
           dataField="email"
+          width="200"
           dataType="string"
           caption="Email"
         >
           <RequiredRule />
           <EmailRule />
         </Column>
-        <Column dataField="ngaysinh" dataType="date" caption="Ngày sinh" />
+        <Column dataField="ngaysinh" dataType="date" caption="Ngày sinh" width="100" />
         <Column
           dataField="ngayvaolam"
           dataType="date"
@@ -324,13 +327,7 @@ function NewStaff() {
             displayExpr="tenloaitinhluong"
           />
         </Column>
-        <Column dataField="chuyenkhoaId" caption="Chuyên khoa" width={125}>
-          <Lookup
-            dataSource={chuyenkhoa}
-            valueExpr="id"
-            displayExpr="tenchuyenkhoa"
-          />
-        </Column>
+ 
         <Column dataField="loaikhoiId" caption="Loại khối" width={125}>
           <Lookup dataSource={khoi} valueExpr="id" displayExpr="tenloaikhoi" />
         </Column>

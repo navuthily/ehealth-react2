@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { ThemContext } from "../template-contract/Context";
-import CustomStore from "devextreme/data/custom_store";
 // import "devextreme/dist/css/dx.dark.css";
 import "devexpress-richedit/dist/dx.richedit.css";
-
+import moment from "moment";
 import "devextreme/dist/css/dx.light.compact.css";
 import { create, RichEdit, DocumentFormat } from "devexpress-richedit";
 import { Button } from "devextreme-react";
@@ -14,20 +13,33 @@ import ArrayStore from "devextreme/data/array_store";
 var rich = RichEdit;
 function flattenObject(ob) {
   var toReturn = {};
-
+  function isIsoDate(str) {
+    if (!/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(str)) return false;
+    var d = new Date(str);
+    return d.toISOString() === str;
+  }
   for (var i in ob) {
-      if (!ob.hasOwnProperty(i)) continue;
+    if (!ob.hasOwnProperty(i)) continue;
 
-      if ((typeof ob[i]) == 'object' && ob[i] !== null) {
-          var flatObject = flattenObject(ob[i]);
-          for (var x in flatObject) {
-              if (!flatObject.hasOwnProperty(x)) continue;
-
-              toReturn[x] = flatObject[x];
-          }
-      } else {
-          toReturn[i] = ob[i];
+    if (typeof ob[i] == "object" && ob[i] !== null) {
+      var flatObject = flattenObject(ob[i]);
+      for (var x in flatObject) {
+        if (!flatObject.hasOwnProperty(x)) continue;
+        if (isIsoDate(flatObject[x]) === true) {
+          flatObject[x] = moment(flatObject[x]).format("DD/MM/YYYY");
+        }
+        toReturn[x] = flatObject[x];
       }
+    } else {
+      if (isIsoDate(ob[i]) === true) {
+        ob[i] = moment(ob[i]).format("DD/MM/YYYY");
+      }
+      if(ob[i]===null){
+        console.log(ob[i]);
+        ob[i]=''
+      }
+      toReturn[i] = ob[i];
+    }
   }
   return toReturn;
 }
@@ -93,7 +105,6 @@ export default function RichTextContract() {
         rich.newDocument();
       }
       rich.mailMergeOptions.setDataSource(dataEmployee);
-
     } catch (error) {
       console.log("Rich ERROR", error);
     }
@@ -139,7 +150,13 @@ export default function RichTextContract() {
   };
   return (
     <>
-     < Button icon="save" text="Lưu" onClick={handleSave} type="success" className='btnStyle'/>
+      <Button
+        icon="save"
+        text="Lưu"
+        onClick={handleSave}
+        type="success"
+        className="btnStyle"
+      />
       <div id="richEdit"></div>
     </>
   );

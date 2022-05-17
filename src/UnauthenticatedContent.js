@@ -7,7 +7,7 @@ export default function UnauthenticatedContent() {
   return (
     <Switch>
       <Route exact path='/login' >
-        <SingleCard title="Sign In">
+        <SingleCard title="Đăng nhập" description="Hệ thống phần mềm quản lý bệnh viện">
           <LoginForm />
         </SingleCard>
       </Route>
