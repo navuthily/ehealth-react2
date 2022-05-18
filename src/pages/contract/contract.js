@@ -177,13 +177,13 @@ const Grid = () => {
           />
         </Column>
         <Column
-          dataField="ngaybatdau"
+          dataField="ngaybatdauhopdong"
           dataType="date"
           caption="Ngày bắt đầu"
           visible={false}
         />
         <Column
-          dataField="ngayketthuc"
+          dataField="ngayketthuchopdong"
           dataType="date"
           caption="Ngày kết thúc"
           visible={false}

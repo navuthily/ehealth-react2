@@ -18,6 +18,7 @@ import DataGrid, {
   RequiredRule,
   EmailRule,
 } from "devextreme-react/data-grid";
+import CheckBox from 'devextreme-react/check-box';
 import "./new-staff.scss";
 import api from "api/methods";
 import CustomStore from "devextreme/data/custom_store";
@@ -118,13 +119,12 @@ function NewStaff() {
     setFocusRowKey(e.component.option("focusedRowKey"));
   };
   const dataGrid = useRef(null);
-  const collapseAllGroups = () => {
-    dataGrid.current.instance.collapseAll();
-  };
-  const expandAllGroups = () => {
-    dataGrid.current.instance.expandAll();
-  };
 
+  function handleAutoExpandAllChanged(){
+    setautoExpandAll(!autoExpandAll)
+  }
+
+  
   function onContentReady(e) {
     e.component.columnOption("command:edit", "visible", true);
     e.component.columnOption("command:edit", "fixed", true);
@@ -142,23 +142,17 @@ function NewStaff() {
   return (
     <div className="main-3">
       <div className="group-button">
-        <Button
-          className="btnStyle"
-          icon="expand"
-          type="success"
-          onClick={expandAllGroups}
-        />
-        <Button
-          className="btnStyle"
-          icon="collapse"
-          type="success"
-          onClick={collapseAllGroups}
-        />
+      <div className="option">
+            <CheckBox text="Mở tất cả các nhóm"
+              value={autoExpandAll}
+              onValueChanged={handleAutoExpandAllChanged} />
+          </div>
         <Button
           className="btnStyle"
           icon="file"
+          text="Xem hợp đồng"
           type="success"
-          onClick={handleContract}
+          onClick={handleContract}  
         />
       </div>
       <DataGrid

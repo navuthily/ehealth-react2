@@ -126,8 +126,11 @@ export default function RichEditComponent() {
       sendRequest("PATCH", {
         key: hopdong?.id,
         values: JSON.stringify(dataChanged),
+      }).then(()=>{
+        console.log("oke")
+        setName(noidungsua);
       });
-      setName(noidungsua);
+    
     }
   }, [noidungsua]);
 
