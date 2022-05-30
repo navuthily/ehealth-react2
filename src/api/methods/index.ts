@@ -1,52 +1,44 @@
-import ApiConstants from '../ApiConstants'
+import ApiConstants from "../ApiConstants";
 // import AsyncStorage from '@react-native-async-storage/async-storage'
-import axios from 'axios'
+import axios from "axios";
 
 export default async function api(
   path: string,
   params: {} | null = {},
   method: string,
-  token?: string | null,
+  token?: string | null
 ) {
-
-  
   if (!token) {
-    token = await sessionStorage.getItem("token")
-
-    
-
-    
+    token = await sessionStorage.getItem("token");
   }
-  let options: {}
+  let options: {};
   if (!params) {
     options = {
       url: ApiConstants.BASE_URL + path,
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + token,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        Authorization: "Bearer " + token,
         ...(token && { token: token }),
       },
       method: method,
-    }
+    };
   } else {
     options = {
       url: ApiConstants.BASE_URL + path,
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + token,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        Authorization: "Bearer " + token,
         ...(token && { token: token }),
       },
       method: method,
       ...(params && { body: JSON.stringify(params) }),
       data: params,
-    }
-    
-    
+    };
   }
-
-
 
   // axios({
   //   method: 'post',
@@ -57,12 +49,12 @@ export default async function api(
   // });
 
   return axios(options)
-    .then(resp => {
+    .then((resp) => {
       // console.log('HIIIIIIIIIIIII',resp.data)
-      return resp.data
+      return resp.data;
     })
-    .then(json => json)
-    .catch(error => {
+    .then((json) => json)
+    .catch((error) => {
       // console.log(JSON.stringify(error));
       // const toast = Toast.show(JSON.stringify(error), {
       //   duration: 10000,
@@ -85,6 +77,6 @@ export default async function api(
       //   },
       // });
 
-      return error
-    })
+      return error;
+    });
 }
